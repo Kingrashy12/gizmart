@@ -1,10 +1,12 @@
-import React from 'react'
-import { DividerClass } from '../class'
+import React from "react";
+import { DividerClass } from "../class";
 
-const Divider = () => {
-  return (
-    <div className={DividerClass} />
-  )
+interface DividerProps {
+  className?: React.CSSProperties | any;
 }
 
-export default Divider
+const Divider = ({ className }: DividerProps) => {
+  return <div className={`${DividerClass} ${className}`} />;
+};
+
+export default Divider;

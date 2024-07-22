@@ -16,7 +16,55 @@
   }
 }
 
-body {
-  background: white;
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
 }
 
+html,
+body {
+  background: #ffffff;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  background: #d9d9d9;
+  height: 5px;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffbc00;
+  width: 5px;
+  border-radius: 9px;
+}
+::-webkit-scrollbar-track {
+  width: 4px;
+}
+
+.no-scrollbarL::-webkit-scrollbar {
+  display: none;
+}
+.__menu-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.collection_bg {
+  background: rgba(209, 213, 219, 0.29);
+}

@@ -1,2 +1,11 @@
-export { default as Divider } from './components/Divider'
-export { default as NotIcon} from './components/NotIcon'
+export { default as Divider } from "./components/Divider";
+export { default as NotIcon } from "./components/NotIcon";
+export { default as Active } from "./components/Active";
+export { default as Check } from "./components/CheckBox";
+export { default as HeightDivider } from "./components/HeightDivider";
+export { default as Discount } from "./components/Badge/Discount";
+export { default as HeaderTwo } from "./components/Text/HeaderTwo";
+export { default as HeaderOne } from "./components/Text/HeaderOne";
+export { default as Paragraph } from "./components/Text/Paragraph";
+export { default as Span } from "./components/Text/Span";
+export { default as MobileDrop } from "./components/MobileDrop";

@@ -1,3 +1,13 @@
-export { default as Navbar } from './Navbar'
-export { default as Cart } from './Cart'
-export { default as Footer} from './Footer'
+export { default as Navbar } from "./layout/Navbar";
+export { default as Cart } from "./modal/Cart";
+export { default as Footer } from "./layout/Footer";
+export { default as Layout } from "./layout/Layout";
+export { default as Sign_Up } from "./auth/sign-up/Sign_Up";
+export { default as Login_ } from "./auth/Login_";
+export { default as HeroSection } from "./home/HeroSection";
+export { default as Collections } from "./home/Collections";
+export { default as ProductSection } from "./home/ProductSection";
+export { default as ScrollTop } from "./ScrollTop";
+export { default as FlashSales } from "./campaign/deals/FlashSales";
+export { default as HighDiscount } from "./campaign/deals/HighDiscount";
+export { default as RecommendedProduct } from "./products/Recommended";
