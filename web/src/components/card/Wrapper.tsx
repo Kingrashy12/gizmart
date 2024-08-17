@@ -3,7 +3,7 @@ import React from "react";
 
 interface WrapperProps {
   children: React.ReactNode;
-  className?: React.CSSProperties | any;
+  className?: string;
   style?: React.CSSProperties;
   fontPoppins?: boolean;
   fontRoboto?: boolean;
@@ -22,9 +22,7 @@ const Wrapper = ({
     <div
       onClick={onClick}
       style={style}
-      className={`collection_bg/ bg-white rounded-sm ${
-        fontPoppins && poppinsFont.className
-      } ${
+      className={`bg-white rounded-sm ${fontPoppins && poppinsFont.className} ${
         fontRoboto && robotoFont.className
       } drop-shadow w-auto px-5 py-3 relative ${className}`}
     >

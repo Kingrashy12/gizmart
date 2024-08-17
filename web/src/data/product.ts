@@ -16,7 +16,7 @@ export const products = [
     slug: "tecno-spark",
     image: TecnoSpark,
     collection: "phones-and-tablets",
-    category: "android-phones",
+    category: "android-phone",
     color: "black",
   },
   {
@@ -26,7 +26,7 @@ export const products = [
     slug: "iphone-15-1",
     image: Iphone15,
     collection: "phones-and-tablets",
-    category: "iphones",
+    category: "apple",
     color: "blue",
   },
   {
@@ -36,7 +36,7 @@ export const products = [
     slug: "tecno-pop-7",
     image: TecnoPop,
     collection: "phones-and-tablets",
-    category: "android-phones",
+    category: "android-phone",
     color: "black",
   },
   {
@@ -46,7 +46,7 @@ export const products = [
     slug: "iphone-14-1",
     image: Iphone14,
     collection: "phones-and-tablets",
-    category: "iphones",
+    category: "apple",
     color: "purple",
   },
   {
@@ -56,7 +56,7 @@ export const products = [
     slug: "iphone-13-1",
     image: Iphone13,
     collection: "phones-and-tablets",
-    category: "iphones",
+    category: "apple",
     color: "gold",
   },
   {
@@ -65,7 +65,7 @@ export const products = [
     brand: "apple",
     slug: "apple-mac-pro",
     image: MacBook,
-    collection: "latops",
+    collection: "laptops",
     category: "mac-os",
     color: "white",
   },

@@ -15,6 +15,7 @@ interface FilterProps {
   setLow: any;
   setHigh: any;
   handlePrice: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  hideBrandFilter?: boolean;
 }
 
 const Filter = ({
@@ -28,6 +29,7 @@ const Filter = ({
   handlePrice,
   brands,
   setBrands,
+  hideBrandFilter,
 }: FilterProps) => {
   return (
     <Wrapper className="w-[180px] max-[1024px]:w-[320px] flex flex-col /relative gap-3 h-full max-[800px]:hidden">
@@ -35,7 +37,12 @@ const Filter = ({
         Filter by
       </h1>
       <Product type="color" setColors={setColors} Colors={colors} />
-      <Product type="brand" setBrands={setBrands} Brands={brands} />
+      <Product
+        type="brand"
+        hideBrandFilter={hideBrandFilter}
+        setBrands={setBrands}
+        Brands={brands}
+      />
       <Product
         type="price-range"
         setHigh={setHigh}

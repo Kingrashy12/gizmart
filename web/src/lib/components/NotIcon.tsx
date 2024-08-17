@@ -9,11 +9,15 @@ interface NotTpye {
 }
 
 const NotIcon: React.FC<NotTpye> = ({ data, className, style }) => {
+  if (data < 1) {
+    return null;
+  }
   return (
-    <div className={`${NotIconClass} ${className} ${poppinsFont.className}`}>
-      <p className="text-center" style={style}>
-        {data}
-      </p>
+    <div
+      className={`${NotIconClass} ${className} ${poppinsFont.className}`}
+      style={style}
+    >
+      <p className="text-center">{data}</p>
     </div>
   );
 };

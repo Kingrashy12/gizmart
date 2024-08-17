@@ -1,11 +1,14 @@
 import { Lost } from "@/assets/svg";
+import CustomButton from "@/components/CustomButton";
 import { poppinsFont } from "@/lib/fonts/font";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const NotFound = () => {
+  const router = useRouter();
   return (
     <div className="flex flex-col relative w-full items-center justify-center h-full mt-36 mb-28 flex-1 gap-5 px-5">
       <Head>
@@ -22,6 +25,9 @@ const NotFound = () => {
         </Link>
         .
       </p>
+      <CustomButton onClick={() => router.reload()} variant="primary">
+        Reload
+      </CustomButton>
     </div>
   );
 };

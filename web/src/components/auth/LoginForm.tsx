@@ -4,9 +4,14 @@ import toast from "react-hot-toast";
 import CustomButton from "../CustomButton";
 import AuthInput from "../form/AuthInput";
 import { Tab, TabGroup, TabList } from "@tremor/react";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
+import { loginWithEmail, loginWithNumber } from "@/redux/thunks/auth";
 
 const LoginForm = () => {
   const [type, setType] = useState("email");
+  const authState = useAppSelector((state) => state.auth);
+  const isLoading = authState.loginStatus === "pending";
+  const dispatch = useAppDispatch();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -21,26 +26,48 @@ const LoginForm = () => {
     setForm({ ...form, [name]: value });
   }
 
+  function login() {
+    if (type === "email") {
+      dispatch(loginWithEmail(form));
+    } else if (type === "number") {
+      dispatch(loginWithNumber(form));
+    }
+  }
+
   function submit() {
     if ((type === "email" && err) || (type === "email" && !form.email)) {
       toast.error(`Enter a valid email address`);
-    } else if (
-      (type === "number" && form.number.length > 11) ||
-      form.number.length < 11
-    ) {
+    } else if (type === "number" && form.number.length > 11) {
       toast.error(`Enter a valid phone number`);
     } else {
-      toast.success("Loading..");
+      login();
     }
   }
+
+  function onKeyLogin(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      submit();
+    }
+  }
+
   return (
     <div className="flex flex-col gap-3 max-[480px]:w-full">
       <TabGroup>
-        <TabList variant="solid">
-          <Tab icon={RiAtLine} onClick={() => setType("email")}>
+        <TabList variant="solid" color="yellow">
+          <Tab
+            icon={RiAtLine}
+            disabled={isLoading}
+            onClick={() => setType("email")}
+            className={isLoading ? "cursor-not-allowed" : ""}
+          >
             Email
           </Tab>
-          <Tab icon={RiPhoneLine} onClick={() => setType("number")}>
+          <Tab
+            icon={RiPhoneLine}
+            disabled={isLoading}
+            onClick={() => setType("number")}
+            className={isLoading ? "cursor-not-allowed" : ""}
+          >
             Number
           </Tab>
         </TabList>
@@ -76,8 +103,15 @@ const LoginForm = () => {
         icon={RiLockPasswordLine}
         onChange={handleChange}
         name="password"
+        onkeyUp={(e) => onKeyLogin(e)}
       />
-      <CustomButton onClick={submit} variant="primary" className="h-12 mt-2">
+      <CustomButton
+        disabled={isLoading}
+        isloading={isLoading}
+        onClick={submit}
+        variant="primary"
+        className="h-12 mt-2"
+      >
         Login
       </CustomButton>
     </div>

@@ -23,6 +23,7 @@ interface FilterProps {
   handlePrice?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setBrands?: any;
   Brands?: Array<string>;
+  hideBrandFilter?: boolean;
 }
 
 const getType = (
@@ -121,10 +122,13 @@ const Product = ({
   handlePrice,
   Brands,
   setBrands,
+  hideBrandFilter,
 }: FilterProps) => {
   return (
     <div
-      className={`${robotoFont.className} flex flex-col gap-1 text-justify w-full relative max-w-[330px] max-[1024px]:max-w-[200px]`}
+      className={`${robotoFont.className} ${
+        hideBrandFilter ? "hidden" : "flex"
+      } flex-col gap-1 text-justify w-full relative max-w-[330px] max-[1024px]:max-w-[200px]`}
     >
       {getType(
         type,

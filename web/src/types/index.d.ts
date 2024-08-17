@@ -1,26 +1,42 @@
 declare type AccountType = "buyer" | "seller" | "marchant" | "";
+declare type Notification_Type =
+  | "orderReceived"
+  | "orderConfirmed"
+  | "orderCanceled"
+  | "orderOutForDelivery"
+  | "orderDelivered"
+  | "payment"
+  | "shipping"
+  | "message"
+  | "review"
+  | "promotion"
+  | "system"
+  | "warning";
 
 declare type UserType = {
   _id: string;
   name: string;
-  email?: string;
-  username: string;
+  email: string;
   profile: object;
-  number: number | string;
-  accountType: AccountType;
+  number: string | any;
+  isAdmin: boolean;
+  isSeller: boolean;
+  isVerified: boolean;
+  isNumberVerified: boolean;
+  slug: string;
 };
 
 declare type ProductType = {
   _id: string;
   userId: string;
   name: string;
-  desc: string;
+  description: string;
   price: string;
-  collection: string;
+  subcategory: string;
   category: string;
-  model: string;
-  images: Array<object>;
-  quantity: string;
+  images: Array<any>;
+  quantity: number | string;
+  total: number;
   brand: string;
   slug: string;
   color: string;
@@ -28,22 +44,67 @@ declare type ProductType = {
   views: Array<object>;
   reviews: Array<object>;
   rating: Array<number>;
+  delivery_fee: number;
   isPromoted: boolean;
   createdAt: string | Date;
+  // seller
+  sellerSlug: string;
+  sellerProfile: any;
+  sellerName: string;
+  isSellerVerified: boolean;
+  sellerTotalProducts: number;
 };
 
 declare type VoucherType = {
+  /**
+   * Unique identifier for the voucher
+   */
   _id: string;
+  /**
+   * Code for the voucher
+   */
   code: string;
+  /**
+   * Indicates whether the voucher has a usage limit
+   * @param hasLimit Boolean flag specifying if there is a limit on the number of times the voucher can be used.
+   */
   hasLimit: boolean;
+  /**
+   * Expiration date for the voucher
+   */
   expiresAt: string;
-  uses: number;
+  /**
+   * Total limit the voucher can be used `(ex. 500)`
+   */
+  globalLimit: number;
+  /**
+   * List of users that have used the voucher
+   * @param usedBy Array of user IDs who have redeemed the voucher.
+   */
   usedBy: Array<string>;
+  /**
+   * Indicates whether the voucher is currently active
+   */
   isActive: boolean;
+  /**
+   * Indicates whether the voucher applies to all products
+   */
   allProducts: boolean;
+  /**
+   * List of products the voucher is allowed for
+   */
   allowedProducts: Array<string>;
-  discountType: string;
+  /**
+   * Type of discount (e.g. percentage, fixed amount)
+   */
+  discountType?: string;
+  /**
+   * Amount of discount
+   */
   discountAmount: number;
+  /**
+   * Creation date for the voucher
+   */
   createdAt: string | Date;
 };
 
@@ -51,10 +112,14 @@ declare type OrderType = {
   _id: string;
   userId: string;
   products: Array<ProductType>;
+  eachQuantity: string[];
   totalPrice: number;
-  status: "pending" | "proessing" | "complete";
-  deliveryStatus: string;
-  createdAt: string | Date;
+  status: "pending" | "processing" | "completed" | "cancelled";
+  deliveryStatus: "Pending" | "Confirmed" | "Out for delivery" | "Delivered";
+  payment_method: string;
+  createdAt: string | Date | any;
+  slug: string;
+  orderNumber: string;
 };
 
 declare type TranscationType = {
@@ -78,4 +143,29 @@ declare type CampaignType = {
   description: string;
   campaignTagline: string;
   createdAt: string | Date;
+};
+
+declare type EarningsChartType = {
+  chartData: any[];
+  category: string[];
+  earned: number;
+  header: string;
+};
+
+declare type DonutChartType = {
+  chartData: any[];
+  category: string[] | string | any;
+  categories: string[];
+  colors?: string[];
+};
+
+declare type NotificationType = {
+  _id: string;
+  userId: string;
+  body: string;
+  header: string;
+  seen: boolean;
+  notifyId: string;
+  createdAt: string;
+  type: Notification_Type;
 };

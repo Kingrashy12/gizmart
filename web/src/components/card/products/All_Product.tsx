@@ -8,38 +8,31 @@ import React from "react";
 import toast from "react-hot-toast";
 import { All_Product_Class, All_Product_Link_Class } from "../class";
 import CustomButton from "@/components/CustomButton";
-
-export type ProductType = {
-  name: string;
-  price: number | string | any;
-  image: StaticImageData | string;
-  brand: string;
-  slug: string;
-};
+import { useRouter } from "next/router";
+import CartButton from "./CartButton";
+import { useAppSelector } from "@/hooks/store";
+import OutOfStock from "@/components/indicator/OutOfStock";
 
 interface ProductProps {
   product: ProductType;
 }
 
 const All_Product = ({ product }: ProductProps) => {
+  const router = useRouter();
   const truncateName =
     product.name.length > 50 ? product.name.slice(0, 50) + "..." : product.name;
-  const slug = product.name
-    .toLowerCase()
-    .replace(/\s/g, "-")
-    .replace(/\--/g, "-");
-
-  function addToCart() {
-    toast.success(`Add to cart`);
-  }
+  const userId = useAppSelector((state) => state.auth.userId);
 
   return (
     <Link href={`/product/${product.slug}`} className={All_Product_Link_Class}>
+      {product.quantity === 0 ? <OutOfStock /> : null}
       <div className={All_Product_Class}>
-        <Discount value={25} className="right-6" />
+        {/* <Discount value={25} className="right-6" /> */}
         <Image
-          src={product.image}
-          className={`w-[120px] h-[120px] max-[700px]:w-[90px] max-[700px]:h-[90px]`}
+          src={product.images[0].url}
+          width={120}
+          height={120}
+          className={`w-[120px] h-[120px] max-[700px]:w-[90px] max-[700px]:h-[90px] rounded-md`}
           alt={product.name}
         />
       </div>
@@ -55,17 +48,13 @@ const All_Product = ({ product }: ProductProps) => {
       >
         {truncateName}
       </p>
-      <Link href={`/?add-to-cart=${slug}`} className="p-1">
-        <CustomButton
-          className="w-full"
-          variant="primary"
-          onClick={(e) => {
-            e?.preventDefault();
-            addToCart();
-          }}
-        >
-          Add to cart
-        </CustomButton>
+      <Link
+        href={`${router.pathname}?${
+          product.userId === userId ? "edit" : "add-to-cart"
+        }=${product.slug}`}
+        className="p-1"
+      >
+        <CartButton product={product} />
       </Link>
     </Link>
   );

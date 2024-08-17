@@ -7,14 +7,10 @@ import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
 import toast from "react-hot-toast";
-
-export type ProductType = {
-  name: string;
-  price: number | string | any;
-  image: StaticImageData | string;
-  brand: string;
-  slug: string;
-};
+import CartButton from "./CartButton";
+import { useAppSelector } from "@/hooks/store";
+import { Display_product_class } from "../class";
+import OutOfStock from "@/components/indicator/OutOfStock";
 
 interface ProductProps {
   product: ProductType;
@@ -23,25 +19,21 @@ interface ProductProps {
 const Product = ({ product }: ProductProps) => {
   const truncateName =
     product.name.length > 50 ? product.name.slice(0, 50) + "..." : product.name;
-  const slug = product.name
-    .toLowerCase()
-    .replace(/\s/g, "-")
-    .replace(/\--/g, "-");
-
-  function addToCart() {
-    toast.success(`Add to cart`);
-  }
+  const userId = useAppSelector((state) => state.auth.userId);
 
   return (
     <Link
       href={`/product/${product.slug}`}
-      className={`flex flex-col relative w-[180px] gap-2 border p-1 rounded-md`}
+      className={`${Display_product_class}`}
     >
-      <div className="bg-AliceBlue p-1 w-full h-[150px] justify-center rounded-lg flex items-center max-[700px]:w-[150px] max-[700px]:h-[125px]">
-        <Discount value={25} className="right-6" />
+      {product.quantity === 0 ? <OutOfStock /> : null}
+      <div className="bg-ProductBg/ collection_bg p-1 w-full h-[150px] justify-center rounded-lg flex items-center max-[1024px]:w-[160px] max-[700px]:w-[150px] max-[700px]:h-[125px]">
+        {/* <Discount value={25} className="right-6" /> */}
         <Image
-          src={product.image}
-          className={`w-[120px] h-[120px] max-[700px]:w-[90px] max-[700px]:h-[90px]`}
+          src={product.images[0].url}
+          className={`max-[700px]:w-[90px] max-[700px]:h-[90px] rounded-md`}
+          width={120}
+          height={120}
           alt={product.name}
         />
       </div>
@@ -57,17 +49,13 @@ const Product = ({ product }: ProductProps) => {
       >
         {truncateName}
       </p>
-      <Link href={`/?add-to-cart=${slug}`} className="p-1">
-        <CustomButton
-          className="w-full"
-          variant="primary"
-          onClick={(e) => {
-            e?.preventDefault();
-            addToCart();
-          }}
-        >
-          Add to cart
-        </CustomButton>
+      <Link
+        href={`/?${product.userId === userId ? "edit" : "add-to-cart"}=${
+          product.slug
+        }`}
+        className="p-1 w-full"
+      >
+        <CartButton product={product} />
       </Link>
     </Link>
   );

@@ -11,6 +11,13 @@ import Laptop from "./collection/laptop.png";
 import IWatch from "./collection/iwatch.png";
 import Gaming from "./collection/gaming.png";
 import HeroImage from "./hero_image.png";
+import No_Products from "./no-products.png";
+import ArrowRight from "./arrow_forward_230dp_000.png";
+import CampaignImage from "./Brazuca - Browsing.png";
+import SellOnGiz from "./rename.png";
+import RequestFailed from "./request-failed.png";
+import RequestSucess from "./request-successful.png";
+import SmileEmoji from "./😃.png";
 
 export {
   GizColumnLogo,
@@ -26,4 +33,11 @@ export {
   IWatch,
   Gaming,
   HeroImage,
+  No_Products,
+  ArrowRight,
+  CampaignImage,
+  SellOnGiz,
+  RequestFailed,
+  RequestSucess,
+  SmileEmoji,
 };

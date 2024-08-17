@@ -32,7 +32,9 @@ const Menu = () => {
               height={50}
               alt="Logo"
             />
+            <Divider />
             {auth.userLoaded ? <MenuLinks /> : <MenuAuthButton />}
+            {/* <MenuLinks /> */}
           </div>
         </DialogPanel>
       </Dialog>

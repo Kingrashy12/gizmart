@@ -9,8 +9,8 @@ const HeroSection = () => {
     <section className="w-full relative h-auto flex">
       <Image
         src={HeroImage}
-        alt="hero"
-        className="w-full h-[81vh] max-[1024px]:h-auto"
+        alt="Gizmart_Hero_Image"
+        className="w-full h-[85vh] max-[1024px]:h-auto"
       />
     </section>
   );

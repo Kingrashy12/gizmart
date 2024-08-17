@@ -1,4 +1,4 @@
-import { AuthImage } from "@/assets";
+import { AuthImage, HeroImage } from "@/assets";
 import AuthInput from "@/components/form/AuthInput";
 import { inter, poppinsFont } from "@/lib/fonts/font";
 import Image from "next/image";
@@ -18,15 +18,18 @@ const EmailSection = () => {
         <Form />
         <p className={`${poppinsFont.className} font-medium text-center`}>
           Already have an account?{" "}
-          <Link className="text-primaryColor" href="/account/login">
+          <Link
+            className="text-primaryColor hover:underline"
+            href="/account/login"
+          >
             Login
           </Link>
         </p>
       </div>
       <Image
-        src={AuthImage}
+        src={HeroImage}
         alt="Welcome"
-        className="w-1/2 h-full fixed right-0 top-0 max-[1024px]:hidden"
+        className="w-[60%] h-full fixed right-0 top-0 max-[1024px]:hidden"
       />
     </div>
   );

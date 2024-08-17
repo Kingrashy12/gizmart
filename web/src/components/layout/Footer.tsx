@@ -3,6 +3,7 @@ import { GizColumnLogo, GizRowLogo } from "@/assets";
 import { footer } from "@/constants/link";
 import { Divider } from "@/lib";
 import { poppinsFont } from "@/lib/fonts/font";
+import { formatTime } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,6 +11,7 @@ import React from "react";
 
 const Footer = () => {
   const path = useRouter();
+  const current = new Date();
   const hideOnAuth =
     path.pathname === "/account/sign-up" || path.pathname === "/account/login";
   return (
@@ -68,7 +70,9 @@ const Footer = () => {
       <div
         className={`${poppinsFont.className} flex text-sm font-medium bg-black w-full p-9 justify-evenly flex-wrap`}
       >
-        <p className=" text-neutral-500">© 2024 Gizmart</p>
+        <p className=" text-neutral-500">
+          © Gizmart Augest 2024 - {formatTime(current, "MMMM yyyy")}
+        </p>
         {/* <Link className="text-primaryColor hover:underline" href="/not-found">
           Privacy policy
         </Link> */}

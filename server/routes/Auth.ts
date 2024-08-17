@@ -1,8 +1,14 @@
-import express from 'express'
-import { RegisterUser } from '../controllers/Auth'
+import express from "express";
+import {
+  loginWithEmail,
+  loginWithNumber,
+  RegisterUser,
+} from "../controllers/Auth";
 
-const gizmartRouter = express.Router()
+const gizmartRouter = express.Router();
 
-gizmartRouter.post('/new', RegisterUser)
+gizmartRouter.post("/sign-up", RegisterUser);
+gizmartRouter.post("/login-email", loginWithEmail);
+gizmartRouter.post("/login-number", loginWithNumber);
 
-export default gizmartRouter
+export default gizmartRouter;

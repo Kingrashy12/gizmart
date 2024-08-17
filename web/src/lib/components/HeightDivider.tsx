@@ -1,7 +1,7 @@
 import React from "react";
 
 interface DividerProps {
-  className?: React.CSSProperties | string;
+  className?: string;
 }
 
 const HeightDivider = ({ className }: DividerProps) => {

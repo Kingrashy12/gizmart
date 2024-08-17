@@ -11,7 +11,7 @@ interface TabProps {
 
 const NavTab = ({ url, label, className, style }: TabProps) => {
   return (
-    <Link href={url} style={style}>
+    <Link href="/category/[category]" as={url} style={style}>
       <p
         className={`${className} ${poppinsFont.className} font-medium hover:text-primaryColor flex items-center`}
       >

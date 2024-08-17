@@ -1,4 +1,4 @@
-import { AuthImage } from "@/assets";
+import { AuthImage, HeroImage } from "@/assets";
 import { poppinsFont } from "@/lib/fonts/font";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,15 +17,18 @@ const Login_ = () => {
         <LoginForm />
         <p className={`${poppinsFont.className} font-medium text-center`}>
           Don't have an account?{" "}
-          <Link className="text-primaryColor" href="/account/sign-up">
+          <Link
+            className="text-primaryColor hover:underline"
+            href="/account/sign-up"
+          >
             Sign Up
           </Link>
         </p>
       </div>
       <Image
-        src={AuthImage}
+        src={HeroImage}
         alt="Welcome"
-        className="w-1/2 h-full fixed right-0 top-0 max-[1024px]:hidden"
+        className="w-[60%] h-full fixed right-0 top-0 max-[1024px]:hidden"
       />
     </div>
   );

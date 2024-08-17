@@ -1,4 +1,5 @@
-import { poppinsFont, robotoFont } from "@/lib/fonts/font";
+import { inter, poppinsFont, robotoFont } from "@/lib/fonts/font";
+import { TextProps } from "@/lib/types";
 import React from "react";
 
 const getWeight = (fontWeight: TextProps["fontWeight"]) => {
@@ -22,14 +23,17 @@ const Paragraph = ({
   fontPoppins,
   fontRoboto,
   fontWeight,
+  fontInter,
+  dangerouslySetInnerHTML,
 }: TextProps) => {
   return (
     <p
       style={{ ...style, fontWeight: getWeight(fontWeight) }}
       onClick={onClick}
+      dangerouslySetInnerHTML={dangerouslySetInnerHTML}
       className={`${className} ${fontPoppins && poppinsFont.className} ${
         fontRoboto && robotoFont.className
-      }`}
+      } ${fontInter && inter.className}`}
     >
       {children}
     </p>

@@ -99,6 +99,7 @@ const config: Config = {
         ProductBg: "#F3F3F3",
         ProductHeader: "#F3EBEB",
         CategoryBg: "#D1D5DB",
+        chartBg: "#E2E8F0",
       },
       borderColor: {
         softGray: "#F5F5F5",

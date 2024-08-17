@@ -29,7 +29,6 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
-  user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -67,4 +66,181 @@ body {
 
 .collection_bg {
   background: rgba(209, 213, 219, 0.29);
+}
+.chart_cursor {
+  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path></svg>')
+      8 8,
+    auto;
+}
+
+.grow {
+  animation: grow 5s infinite linear;
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1); /* initial size */
+  }
+  25% {
+    transform: scale(1.25); /* 25% larger */
+  }
+  50% {
+    transform: scale(1.5); /* 50% larger */
+  }
+  75% {
+    transform: scale(1.25); /* 25% larger */
+  }
+  100% {
+    transform: scale(1); /* back to initial size */
+  }
+}
+
+.v_icon {
+  background: rgba(255, 188, 0, 0.2);
+}
+.v_icon > .v_icon_rotate {
+  transform: rotate(48deg);
+}
+
+.loader_bg {
+  animation: loadOn 2s infinite linear;
+  background: linear-gradient(to left, #ffbc00, #ffffff);
+}
+
+@keyframes loadOn {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.image-loader {
+  position: relative;
+  z-index: 1; /* keep image on top */
+  animation: none;
+  animation: grow 1s infinite linear; /* add grow animation */
+}
+
+@keyframes grow {
+  from {
+    transform: scale(1.01);
+  }
+  to {
+    transform: scale(1.03); /* adjust growth factor */
+  }
+}
+
+.input-svg_ > svg {
+  display: none;
+}
+
+.spinner-input > svg {
+  color: #ffbc00;
+  animation: spinner 1s infinite linear;
+}
+.spinner {
+  animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sender + .sender {
+  border-radius: 16px;
+}
+.receiver + .receiver {
+  border-radius: 16px;
+}
+.sender + .receiver {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-top-left-radius: 16px;
+}
+.receiver + .sender {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.sender:first-child,
+.receiver + .sender {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-top-right-radius: 16px;
+  position: relative;
+  border-bottom-right-radius: 16px;
+}
+/* Add tail to message end */
+.sender:first-child::after,
+.receiver + .sender::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -4px;
+  border-top: 15px solid #d0eafb;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  transform: rotate(-45deg);
+  z-index: -1;
+}
+.receiver:first-child,
+.sender + .receiver {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  position: relative;
+}
+.receiver:first-child::after,
+.sender + .receiver::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: -4px;
+  border-top: 15px solid #f0f0f0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* OUT OF STOCK */
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 50;
+}
+
+.out-of-stock-message {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 360px) {
+  .out-of-stock-message {
+    padding: 5px 10px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .out-of-stock-message {
+    padding: 5px 6px;
+  }
 }

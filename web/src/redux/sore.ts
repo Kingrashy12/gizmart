@@ -1,12 +1,25 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cartSlice";
 import authReducer from "./authSlice";
-// ...
+import productReducer from "./productSlice";
+import userReducer from "./userSlice";
+import chatReducer from "./chatSlice";
+import messageReducer from "./messageSlice";
+import orderReducer from "./orderSlice";
+import voucherReducer from "./voucherSlice";
+import notificationReducer from "./notificationSlice";
 
 export const store = configureStore({
   reducer: {
-    cart: cartReducer,
     auth: authReducer,
+    cart: cartReducer,
+    chat: chatReducer,
+    message: messageReducer,
+    notification: notificationReducer,
+    order: orderReducer,
+    product: productReducer,
+    user: userReducer,
+    voucher: voucherReducer,
   },
 });
 

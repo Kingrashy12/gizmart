@@ -1,4 +1,5 @@
 import { poppinsFont, robotoFont } from "@/lib/fonts/font";
+import { TextProps } from "@/lib/types";
 import React from "react";
 
 const getWeight = (fontWeight: TextProps["fontWeight"]) => {
@@ -22,11 +23,13 @@ const HeaderOne = ({
   fontPoppins,
   fontRoboto,
   fontWeight,
+  dangerouslySetInnerHTML,
 }: TextProps) => {
   return (
     <h1
       style={{ ...style, fontWeight: getWeight(fontWeight) }}
       onClick={onClick}
+      dangerouslySetInnerHTML={dangerouslySetInnerHTML}
       className={`${className} ${fontPoppins && poppinsFont.className} ${
         fontRoboto && robotoFont.className
       }`}

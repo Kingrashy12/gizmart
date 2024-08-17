@@ -123,7 +123,7 @@ const MobileProductFilter = ({
 }: FilterProps) => {
   return (
     <div
-      className={`${robotoFont.className} max-[480px]:flex flex-col gap-1 text-justify w-full relative hidden`}
+      className={`${robotoFont.className} max-[768px]:flex flex-col gap-1 text-justify w-full relative hidden`}
     >
       {getType(
         type,

@@ -1,9 +1,7 @@
-import { HeadPhone } from "@/assets";
 import { poppinsFont } from "@/lib/fonts/font";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Bounce, Rotate, Zoom } from "react-awesome-reveal";
 
 interface CardProps {
   url: string;
@@ -22,7 +20,6 @@ const CollectionCard = ({
 }: CardProps) => {
   return (
     <Link href={url} className="flex flex-col gap-3 items-center">
-      {/* <Zoom> */}
       <div className="collection_bg p-5 rounded-xl h-40 justify-center flex items-center max-[1024px]:w-[140px] max-[480px]:w-[90px] max-[480px]:h-[90px]">
         <Image
           alt="Card"
@@ -31,7 +28,6 @@ const CollectionCard = ({
         />
       </div>
       <p className={`${poppinsFont.className} font-medium text-xs`}>{label}</p>
-      {/* </Zoom> */}
     </Link>
   );
 };
