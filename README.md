@@ -1,6 +1,6 @@
 # Gizmart
 
-![Gizmart](./src/assets/hero_image.png)
+![Gizmart](/web/src/assets/hero_image.png)
 
 ## Description
 
