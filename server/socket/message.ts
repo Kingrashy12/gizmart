@@ -25,5 +25,15 @@ export default function handleMessageSocket(io: Server) {
     //         socket.emit("error", "Failed to retrieve unread messages.");
     //       }
     //   })
+    socket.on("get_last_message", async (chatId) => {
+      try {
+        const messages = await MessageModel.find({ chatId });
+        const lastMessage = messages[messages.length - 1];
+        socket.emit("last_message", lastMessage, chatId);
+      } catch (error: any) {
+        console.error("Error fetching unread messages:", error.message);
+        socket.emit("error", "Failed to retrieve unread messages.");
+      }
+    });
   });
 }

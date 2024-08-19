@@ -8,7 +8,7 @@ const Menu: React.FC<{ closeMenu: () => void }> = ({ closeMenu }) => {
   const chatState = useAppSelector((state) => state.chat);
   const selectedChat = chatState.selectedChat.user;
   const name = selectedChat.name;
-  const truncatedName = name.length > 10 ? name.slice(0, 10) + "..." : name;
+  const truncatedName = name.length > 8 ? name.slice(0, 8) + "..." : name;
 
   function not_ava() {
     toast("This feature is not available yet. Please check back later!", {

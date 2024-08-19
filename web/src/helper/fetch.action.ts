@@ -19,6 +19,11 @@ export async function fetchSellerInfo(slug: string | any) {
   return seller.data;
 }
 
+export async function get_vouchers(userId: string) {
+  const vouchers = await axios.get(`${API_URL}/voucher/all/${userId}`);
+  return vouchers.data;
+}
+
 export async function getUserById(userId: string) {
   try {
     const user = await axios.get(`${API_URL}/user/one/validate-id/${userId}`);

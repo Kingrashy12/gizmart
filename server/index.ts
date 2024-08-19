@@ -20,6 +20,7 @@ import handleNotificationFetch, {
 } from "./socket/notifications";
 import { generateNumber } from "./utils/generateCode";
 import handleUserStatus from "./socket/chats";
+import MessageModel from "./models/Message";
 // import { createClient } from "redis";
 
 dotenv.config();
@@ -59,10 +60,6 @@ server.use("/v1/messages", MessageRoute);
 server.get("/v1", (req, res) => {
   res.send("Welcome on board");
   console.log("welcome onboard");
-});
-
-server.get("/v1/test-number", (req, res) => {
-  res.send(generateNumber(10));
 });
 
 connectDB();

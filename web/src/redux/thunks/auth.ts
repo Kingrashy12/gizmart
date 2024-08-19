@@ -1,5 +1,9 @@
 import { API_URL } from "@/constants";
-import { UpgradeToSeller } from "@/helper/patch.action";
+import {
+  update_email,
+  update_profile,
+  UpgradeToSeller,
+} from "@/helper/patch.action";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -85,6 +89,36 @@ export const upgradeToSeller = createAsyncThunk(
       toast.error(error.response?.data);
       console.log(error.response?.data);
       return rejectWithValue(error.response?.data);
+    }
+  }
+);
+
+export const updateEmail = createAsyncThunk(
+  "auth/update-email",
+  async ({ ...form }: EmailUpdateType, { rejectWithValue }) => {
+    try {
+      const res = await update_email(form);
+      global?.localStorage?.setItem("gizmart_auth_key", res?.data.token);
+      return res;
+    } catch (error: any) {
+      toast.error(error.response?.data);
+      console.log(error.response?.data);
+      return rejectWithValue(error.response?.data);
+    }
+  }
+);
+
+export const updateProfile = createAsyncThunk(
+  "auth/update-profile",
+  async ({ ...form }: ProfileUpdateType, { rejectWithValue }) => {
+    try {
+      const res = await update_profile(form);
+      global?.localStorage?.setItem("gizmart_auth_key", res?.data);
+      return res;
+    } catch (error: any) {
+      toast.error(error.response?.data);
+      console.log(error.response?.data);
+      rejectWithValue(error.response?.data);
     }
   }
 );

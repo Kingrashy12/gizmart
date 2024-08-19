@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ApplyVoucher, generateVoucher } from "./thunks/voucher";
+import { ApplyVoucher, generateVoucher, getVouchers } from "./thunks/voucher";
 import toast from "react-hot-toast";
 
 const initialState: VoucherStateType = {
@@ -58,6 +58,19 @@ const voucherSlice = createSlice({
         ...state,
         validateError: action.payload,
         validateStatus: "failed",
+      };
+    });
+    builder.addCase(getVouchers.pending, (state) => {
+      return { ...state, _all_fetchStatus: "pending" };
+    });
+    builder.addCase(getVouchers.fulfilled, (state, action) => {
+      return { ...state, _all_fetchStatus: "successful", _all: action.payload };
+    });
+    builder.addCase(getVouchers.rejected, (state, action) => {
+      return {
+        ...state,
+        _all_fetchStatus: "failed",
+        _allfetchError: action.payload,
       };
     });
   },

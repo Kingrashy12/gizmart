@@ -105,3 +105,15 @@ export const validateVoucher: RequestHandler = async (req, res) => {
     res.status(500).json("An unexpected error occurred.");
   }
 };
+
+export const getVouchers: RequestHandler = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const vouchers = await VoucherModel.find();
+    if (!vouchers) return res.status(404).json("No voucher found");
+    res.status(200).json(vouchers);
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json("An unexpected error occurred.");
+  }
+};

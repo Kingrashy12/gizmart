@@ -12,6 +12,7 @@ import { MenuModalProvider } from "@/context/useMenu";
 import { SearchModalProvider } from "@/context/useSearch";
 import { SellProductModalProvider } from "@/context/useSell";
 import { SettingsModalProvider } from "@/context/useSettings";
+import VoucherModalProvider from "@/context/useVouchers";
 import { loadUser } from "@/redux/authSlice";
 import { store } from "@/redux/sore";
 import { getProducts } from "@/redux/thunks/product";
@@ -26,8 +27,8 @@ store.dispatch(getProducts());
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <SettingsModalProvider>
-        <BackgroundLoaderProvider>
+      <BackgroundLoaderProvider>
+        <SettingsModalProvider>
           <CongratsProvider>
             <CheckOutProvider>
               <SellProductModalProvider>
@@ -39,7 +40,9 @@ export default function App({ Component, pageProps }: AppProps) {
                           <Toaster />
                           <GenVoucherProvider>
                             <EditMessageProvider>
-                              <Component {...pageProps} />
+                              <VoucherModalProvider>
+                                <Component {...pageProps} />
+                              </VoucherModalProvider>
                             </EditMessageProvider>
                           </GenVoucherProvider>
                         </Layout>
@@ -50,8 +53,8 @@ export default function App({ Component, pageProps }: AppProps) {
               </SellProductModalProvider>
             </CheckOutProvider>
           </CongratsProvider>
-        </BackgroundLoaderProvider>
-      </SettingsModalProvider>
+        </SettingsModalProvider>
+      </BackgroundLoaderProvider>
     </Provider>
   );
 }

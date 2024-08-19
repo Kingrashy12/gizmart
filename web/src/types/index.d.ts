@@ -1,4 +1,18 @@
 declare type AccountType = "buyer" | "seller" | "marchant" | "";
+declare type SettingsCurrentType = "password" | "email" | "info" | "";
+
+declare type PasswordInputType = {
+  placeholder: string;
+  label: string;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+  name: string;
+  error?: boolean | any;
+  errMessage?: string;
+  icon?: any;
+  type?: "number" | "password" | "email" | "search" | "text" | "url";
+};
 declare type Notification_Type =
   | "orderReceived"
   | "orderConfirmed"
@@ -168,4 +182,34 @@ declare type NotificationType = {
   notifyId: string;
   createdAt: string;
   type: Notification_Type;
+};
+
+declare type UserProfileType = {
+  asset_id: string;
+  public_id: string;
+  version: number;
+  version_id: string;
+  signature: string;
+  width: number;
+  height: number;
+  format: string;
+  resource_type: string;
+  created_at: string;
+  tags: any[];
+  bytes: number;
+  type: string;
+  etag: string;
+  placeholder: string;
+  url: string;
+  secure_url: string;
+  asset_folder: string;
+  display_name: string;
+  api_key: string;
+};
+
+declare type ChatMemberType = {
+  name: string;
+  profile: UserProfileType;
+  isVerified: boolean;
+  _id: string;
 };

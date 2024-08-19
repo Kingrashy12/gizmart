@@ -3,7 +3,9 @@ import {
   createUser,
   loginWithEmail,
   loginWithNumber,
+  updateEmail,
   upgradeToSeller,
+  updateProfile,
 } from "./thunks/auth";
 import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
@@ -26,6 +28,10 @@ const initialState: AuthState = {
   upgradeStatus: "",
   upgradeError: "",
   userLoaded: false,
+  mailUpdateStatus: "",
+  mailUpdateError: "",
+  updateStatus: "",
+  updateError: "",
 };
 
 const AuthSlice = createSlice({
@@ -201,6 +207,42 @@ const AuthSlice = createSlice({
         upgradeError: action.payload,
         upgradeStatus: "failed",
       };
+    });
+    builder.addCase(updateEmail.pending, (state) => {
+      return { ...state, mailUpdateStatus: "pending" };
+    });
+    builder.addCase(updateEmail.fulfilled, (state, action) => {
+      toast.success(action.payload.message);
+      return {
+        ...state,
+        mailUpdateStatus: "successful",
+        email: action.payload.data.user,
+      };
+    });
+    builder.addCase(updateEmail.rejected, (state, action) => {
+      return {
+        ...state,
+        mailUpdateError: action.payload,
+        mailUpdateStatus: "failed",
+      };
+    });
+    builder.addCase(updateProfile.pending, (state, action) => {
+      return { ...state, updateStatus: "pending" };
+    });
+    builder.addCase(updateProfile.fulfilled, (state, action) => {
+      toast.success(action.payload.message);
+      const user: UserType = jwtDecode(action.payload.data);
+      return {
+        ...state,
+        name: user.name,
+        email: user.email,
+        profile: user.profile,
+        number: user.number,
+        updateStatus: "successful",
+      };
+    });
+    builder.addCase(updateProfile.rejected, (state, action) => {
+      return { ...state, updateStatus: "failed", updateError: action.payload };
     });
   },
 });

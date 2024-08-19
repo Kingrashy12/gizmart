@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 // import { NavBarContainer } from "./class";
 import Image from "next/image";
 import { GizRowLogo } from "@/assets";
@@ -60,9 +60,12 @@ const Navbar = () => {
   const handleNotification = (unread: NotificationType[]) => {
     setNotifications(unread);
   };
-  const handleNotifications = (notifications: NotificationType[]) => {
-    dispatch(updateNotification(notifications));
-  };
+  const handleNotifications = useCallback(
+    (notifications: NotificationType[]) => {
+      dispatch(updateNotification(notifications));
+    },
+    [notifications]
+  );
 
   useEffect(() => {
     if (!authState.userId) return;
@@ -86,7 +89,7 @@ const Navbar = () => {
     return () => {
       socket.off("notifications", handleNotifications);
     };
-  }, [notifications]);
+  }, [handleNotifications]);
 
   return (
     <div

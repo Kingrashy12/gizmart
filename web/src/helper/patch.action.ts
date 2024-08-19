@@ -79,3 +79,31 @@ export async function complete_order(orderId: string) {
   );
   return completedOrder.data;
 }
+
+export async function update_password(data: PasswordUpdateType) {
+  const res = await axios.patch(`${API_URL}/auth/update-password`, {
+    userId: data.userId,
+    password: data.password,
+    newPassword: data.newPassword,
+  });
+
+  return res.data;
+}
+export async function update_email(data: EmailUpdateType) {
+  const res = await axios.patch(`${API_URL}/auth/update-email`, {
+    userId: data.userId,
+    email: data.email,
+  });
+
+  return res.data;
+}
+
+export async function update_profile(form: ProfileUpdateType) {
+  const res = await axios.patch(`${API_URL}/user/update-profile`, {
+    userId: form.userId,
+    profile: form.profile,
+    number: form.number,
+    name: form.name,
+  });
+  return res.data;
+}

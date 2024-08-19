@@ -7,11 +7,13 @@ import { RiAiGenerate, RiEyeLine } from "@remixicon/react";
 import No_Voucher from "./No_Voucher";
 import { useGenVoucherModal } from "@/context/useGenVoucher";
 import { useAppSelector } from "@/hooks/store";
+import { useVouchers } from "@/context/useVouchers";
 
 const Vouchers = () => {
   const [tab, setTab] = useState("active");
   const { onOpen } = useGenVoucherModal();
   const user = useAppSelector((state) => state.auth);
+  const { onOpen: openVoucher } = useVouchers();
   return (
     <Wrapper className="flex flex-col w-full p-0">
       <FlexBetween className="mb-2">
@@ -25,7 +27,11 @@ const Vouchers = () => {
           <CustomButton onClick={onOpen} icon={RiAiGenerate} variant="primary">
             Generate
           </CustomButton>
-          <CustomButton icon={RiEyeLine} variant="secondary">
+          <CustomButton
+            onClick={openVoucher}
+            icon={RiEyeLine}
+            variant="secondary"
+          >
             View
           </CustomButton>
         </div>

@@ -2,6 +2,8 @@ import { Request, RequestHandler, Response } from "express";
 import UserModel from "../models/User";
 import genAuthToken from "../utils/genAuthToken";
 import ProductModel from "../models/Products";
+import uploadImage from "../middleware/uploadImage";
+import { updatedUser } from "../middleware/update/user";
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -58,6 +60,33 @@ export const getSeller: RequestHandler = async (req, res) => {
       user.products.map(async (id) => await ProductModel.findById(id))
     );
     res.status(200).json({ user, products });
+  } catch (error: any) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+};
+
+export const updateProfile: RequestHandler = async (req, res) => {
+  try {
+    const { userId, profile, number, name } = req.body;
+    if (!userId) return res.status(400).json("userId is missing");
+    if (profile) {
+      const imageRes = await uploadImage("Gizmart_profile", profile);
+      const body = {
+        name,
+        number,
+        profile: imageRes,
+      };
+      const data = await updatedUser(userId, body, res);
+      res.status(200).json({ message: "Profile updated", data });
+    } else {
+      const body = {
+        name,
+        number,
+      };
+      const data = await updatedUser(userId, body, res);
+      res.status(200).json({ message: "Profile updated", data });
+    }
   } catch (error: any) {
     console.log(error.message);
     res.status(500).json(error.message);

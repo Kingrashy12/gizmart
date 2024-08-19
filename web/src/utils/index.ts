@@ -86,3 +86,12 @@ export function formatDateBy(date: Date): string {
   // console.log("date:", { diffInSeconds, diffInMinutes, diffInHours });
   return time;
 }
+
+export function extractUser(user: AuthState) {
+  return {
+    _id: user.userId,
+    name: user.name,
+    isVerified: user.isVerified,
+    profile: user.profile,
+  };
+}

@@ -8,6 +8,7 @@ import messageReducer from "./messageSlice";
 import orderReducer from "./orderSlice";
 import voucherReducer from "./voucherSlice";
 import notificationReducer from "./notificationSlice";
+import savedProductReducer from "./savedProductSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     notification: notificationReducer,
     order: orderReducer,
     product: productReducer,
+    saved: savedProductReducer,
     user: userReducer,
     voucher: voucherReducer,
   },

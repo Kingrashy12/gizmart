@@ -1,8 +1,8 @@
 import { poppinsFont } from "@/lib/fonts/font";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { ContainerClass, RequiredClass } from "../class";
-import { ChatPage } from "@/components";
+import { BackgroundLoader, ChatPage } from "@/components";
 import { useRouter } from "next/router";
 import { useAppSelector } from "@/hooks/store";
 import toast from "react-hot-toast";
@@ -22,12 +22,14 @@ const Message = () => {
     }
   }, [router]);
   return (
-    <main className={`${ContainerClass} flex-1 ${poppinsFont.className}`}>
-      <Head>
-        <title>Messages - Gizmart</title>
-      </Head>
-      <ChatPage />
-    </main>
+    <Suspense fallback={<BackgroundLoader />}>
+      <main className={`${ContainerClass} flex-1 ${poppinsFont.className}`}>
+        <Head>
+          <title>Messages - Gizmart</title>
+        </Head>
+        <ChatPage />
+      </main>
+    </Suspense>
   );
 };
 

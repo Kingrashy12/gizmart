@@ -50,3 +50,18 @@ declare type OrderReleaseType = {
   orderId: string;
   estimateddate: EstType;
 };
+declare type PasswordUpdateType = {
+  userId: string;
+  password: string;
+  newPassword: string;
+};
+declare type ProfileUpdateType = {
+  userId: string;
+  name: string;
+  number: string;
+  profile?: any;
+};
+declare type EmailUpdateType = {
+  userId: string;
+  email: string;
+};

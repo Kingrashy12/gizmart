@@ -1,12 +1,10 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import UserModel from "../models/User";
 import hashPassword from "../utils/hashPassword";
 import slugify from "../utils/slugify";
 import genAuthToken from "../utils/genAuthToken";
-import sendSms from "../utils/sendSms";
 import Cloud from "../utils/cloudinary";
 import comparePassword from "../utils/comparePassword";
-import sendVerificationCode from "../utils/sendVerificationCode";
 
 export const RegisterUser = async (req: Request, res: Response) => {
   try {
@@ -33,11 +31,6 @@ export const RegisterUser = async (req: Request, res: Response) => {
       slug: slugify(name),
       profile: uploadRes,
     });
-    // await sendSms(
-    //   number,
-    //   `Welcome to Gizmart ${name}!. Login to your dashboard and start your advanture`
-    // );
-    // sendVerificationCode(number);
     const user = await newUser.save();
     const token = genAuthToken(user);
 
@@ -79,5 +72,52 @@ export const loginWithNumber = async (req: Request, res: Response) => {
   } catch (error: any) {
     console.error(error.message);
     res.status(500).json(error.message);
+  }
+};
+
+export const changePassword: RequestHandler = async (req, res) => {
+  try {
+    const { userId, password, newPassword } = req.body;
+    if (!userId || !password || !newPassword) {
+      return res.status(400).json("Missing required fields");
+    }
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      return res.status(404).json("User not found");
+    }
+    const isMatch = await comparePassword(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json("Incorrect current password");
+    }
+    const isSame = await comparePassword(newPassword, user.password);
+    if (isSame) {
+      return res.status(400).json("You can't use the same password");
+    }
+    const hashedPass = await hashPassword(newPassword);
+    await user.updateOne({ $set: { password: hashedPass } });
+    res.status(200).json({ message: "Password successfully updated" });
+  } catch (error: any) {
+    console.error("Error changing password:", error.message);
+    res.status(500).json("Internal server error");
+  }
+};
+
+export const changeEmail: RequestHandler = async (req, res) => {
+  try {
+    const { userId, email } = req.body;
+    if (!userId) return res.status(400).json("userId is missing");
+    const user = await UserModel.findByIdAndUpdate(
+      userId,
+      { email },
+      { new: true }
+    );
+    if (user) {
+      const token = genAuthToken(user);
+      const data = { token, user: user.email };
+      res.status(200).json({ message: "Email updated", data });
+    } else return res.status(404).json("Update error: user not found");
+  } catch (error: any) {
+    console.error("Error changing email:", error.message);
+    res.status(500).json("Internal server error");
   }
 };

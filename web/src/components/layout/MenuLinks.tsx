@@ -18,6 +18,7 @@ import { logUserout } from "@/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { useSellProductModal } from "@/context/useSell";
 import { GoChecklist } from "react-icons/go";
+import { MdBookmark } from "react-icons/md";
 
 const MenuLinks = () => {
   const path = useRouter();
@@ -90,12 +91,12 @@ const MenuLinks = () => {
         notValue={0}
       />
       <MenuTab
-        url="/favourite"
-        label="Favourite"
+        url="/saved"
+        label="Saved product"
         islink
         onClick={onClose}
-        isactive={path.pathname === "/favourite"}
-        icon={RiStarLine}
+        isactive={path.pathname === "/saved"}
+        icon={MdBookmark}
       />
       <MenuTab onClick={openSetting} label="Settings" icon={RiSettingsLine} />
       <MenuTab

@@ -8,9 +8,10 @@ import { RiLockPasswordLine } from "@remixicon/react";
 
 interface MainProps {
   onClose: () => void;
+  exitChange: React.Dispatch<React.SetStateAction<SettingsCurrentType>>;
 }
 
-const MainCard = ({ onClose }: MainProps) => {
+const MainCard = ({ onClose, exitChange }: MainProps) => {
   return (
     <>
       <FlexBetween className="items-center text-black p-3 border-b-[13px] border-b-softGray">
@@ -26,17 +27,20 @@ const MainCard = ({ onClose }: MainProps) => {
       <SettingsCard
         icon={<FaUserCircle size={25} />}
         setting="Personal information"
+        onClick={() => exitChange("info")}
       />
       <SettingsCard icon={<FaPhoneAlt size={25} />} setting="Phone numbers" />
       <SettingsCard
         icon={<MdAlternateEmail size={25} />}
         setting="Change email"
+        onClick={() => exitChange("email")}
         hideDivider
       />
       <div className="bg-softGray p-9" />
       <SolidSettingsCard
         icon={<RiLockPasswordLine size={25} />}
         setting="Change password"
+        onClick={() => exitChange("password")}
       />
       <SolidSettingsCard
         icon={<MdOutlineDelete size={25} />}

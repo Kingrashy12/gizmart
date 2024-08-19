@@ -10,7 +10,7 @@ declare type AuthState = {
   userId: string;
   name: string;
   email: string;
-  profile: object | string;
+  profile: UserProfileType | any;
   number: string;
   isAdmin: boolean;
   isSeller: boolean;
@@ -22,6 +22,10 @@ declare type AuthState = {
   registerError: string | any;
   upgradeStatus: StatusType;
   upgradeError: string | any;
+  mailUpdateStatus: StatusType;
+  mailUpdateError: string | any;
+  updateStatus: StatusType;
+  updateError: string | any;
   userLoaded: boolean;
 };
 
@@ -91,14 +95,14 @@ declare type UserDataType = {
 
 declare type ChatType = {
   _id: string;
-  members: string[];
+  members: ChatMemberType[];
 };
 
 declare type selectedChatType = {
   user: UserDataType;
   chat: {
     _id: string;
-    members: string[];
+    members: ChatMemberType[];
   };
 };
 
@@ -183,4 +187,8 @@ declare type VoucherStateType = {
 
 declare type NotificationStateType = {
   notifications: NotificationType[];
+};
+
+declare type SavedProductStateType = {
+  items: ProductType[];
 };
