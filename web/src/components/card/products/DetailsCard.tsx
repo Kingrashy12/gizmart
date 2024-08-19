@@ -23,16 +23,16 @@ import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { IconWrap } from "@/components";
 import { MdBookmark, MdBookmarkBorder } from "react-icons/md";
 import { saveProduct } from "@/redux/savedProductSlice";
+import PriceHistory from "@/components/modal/PriceHistory";
 
 const DetailsCard = ({ product }: CurrentProps) => {
-  const [favourite, setFavourite] = useState(false);
   const brandName =
     product.brand.slice(0, 1).toUpperCase() + product.brand.slice(1);
   const views = product.views.length;
-  // const views = 123675000;
   const dispatch = useAppDispatch();
   const savedState = useAppSelector((state) => state.saved);
   const saved = savedState.items.find((item) => item._id === product._id);
+  const [openHistory, setOpenHistory] = useState(false);
 
   return (
     <Flex className="flex-col gap-3 max-[480px]:p-2">
@@ -56,17 +56,6 @@ const DetailsCard = ({ product }: CurrentProps) => {
         {product.name}
       </Paragraph>
       <Flex className="gap-3 items-center flex-wrap" removeFullWidth>
-        {/* <Flex className="items-center w-auto" removeFullWidth>
-          <Icon icon={RiStarFill} size="md" className="text-primaryColor" />
-          <Paragraph
-            fontPoppins
-            fontWeight="semi-bold"
-            className="text-base translate-y-[1px]"
-          >
-            4.8
-          </Paragraph>
-        </Flex>
-        <HeightDivider /> */}
         <Paragraph fontRoboto fontWeight="normal" className="w-auto">
           Brand:{" "}
           <Link
@@ -94,7 +83,11 @@ const DetailsCard = ({ product }: CurrentProps) => {
           </Paragraph>
         </Flex>
         <HeightDivider />
-        <Flex className="items-center cursor-pointer" removeFullWidth>
+        <Flex
+          className="items-center cursor-pointer"
+          removeFullWidth
+          onClick={() => setOpenHistory(true)}
+        >
           <Icon icon={RiLineChartLine} size="md" className="text-black" />
           <Paragraph fontRoboto fontWeight="medium">
             View price history
@@ -103,6 +96,12 @@ const DetailsCard = ({ product }: CurrentProps) => {
       </Flex>
       <Divider />
       <SellersProfileCard product={product} />
+      {openHistory && (
+        <PriceHistory
+          product={product}
+          closeChart={() => setOpenHistory(false)}
+        />
+      )}
     </Flex>
   );
 };

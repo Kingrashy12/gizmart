@@ -8,6 +8,7 @@ declare type TextProps = {
   fontPoppins?: boolean;
   fontRoboto?: boolean;
   fontInter?: boolean;
+  fontJakarta?: boolean;
   fontWeight?: "semi-bold" | "bold" | "medium" | "normal";
   dangerouslySetInnerHTML?: DOMAttributes;
 };

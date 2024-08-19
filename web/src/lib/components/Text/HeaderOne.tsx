@@ -1,4 +1,4 @@
-import { poppinsFont, robotoFont } from "@/lib/fonts/font";
+import { jakarta, poppinsFont, robotoFont } from "@/lib/fonts/font";
 import { TextProps } from "@/lib/types";
 import React from "react";
 
@@ -24,6 +24,7 @@ const HeaderOne = ({
   fontRoboto,
   fontWeight,
   dangerouslySetInnerHTML,
+  fontJakarta,
 }: TextProps) => {
   return (
     <h1
@@ -32,7 +33,7 @@ const HeaderOne = ({
       dangerouslySetInnerHTML={dangerouslySetInnerHTML}
       className={`${className} ${fontPoppins && poppinsFont.className} ${
         fontRoboto && robotoFont.className
-      }`}
+      } ${fontJakarta && jakarta.className}`}
     >
       {children}
     </h1>

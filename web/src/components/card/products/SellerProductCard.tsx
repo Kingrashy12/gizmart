@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FlexBetween, HeightDivider, Paragraph, StaticImage } from "@/lib";
 import { Badge, TableCell, TableRow } from "@tremor/react";
 import { nairaSym } from "@/styles/global";
@@ -7,6 +7,7 @@ import { RiDeleteBinLine, RiEdit2Line } from "@remixicon/react";
 import { useBackgroundLoader } from "@/context/useBackgroundLoader";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { deleteProduct } from "@/redux/thunks/product";
+import EditProduct from "@/components/modal/EditProduct";
 
 interface SellerProductsProps {
   product: ProductType;
@@ -17,6 +18,7 @@ const SellerProductCard = ({ product }: SellerProductsProps) => {
   const userId = useAppSelector((state) => state.auth.userId);
   const isDeleting = productState.delete_status === "pending";
   const { onClose, onOpen } = useBackgroundLoader();
+  const [openEdit, setOpenEdit] = useState(false);
   const dispatch = useAppDispatch();
   const productName =
     product.name.length > 40 ? product.name.slice(0, 40) + "..." : product.name;
@@ -57,7 +59,11 @@ const SellerProductCard = ({ product }: SellerProductsProps) => {
         <Badge color="yellow">{product.quantity}</Badge>
       </TableCell>
       <TableCell className="flex gap-3">
-        <CustomButton variant="primary" icon={RiEdit2Line}>
+        <CustomButton
+          variant="primary"
+          icon={RiEdit2Line}
+          onClick={() => setOpenEdit(true)}
+        >
           Edit
         </CustomButton>
         <CustomButton
@@ -68,6 +74,11 @@ const SellerProductCard = ({ product }: SellerProductsProps) => {
           Delete
         </CustomButton>
       </TableCell>
+      <EditProduct
+        isOpen={openEdit}
+        closeEdit={() => setOpenEdit(false)}
+        product={product}
+      />
     </TableRow>
   );
 };

@@ -22,6 +22,10 @@ const savedProductSlice = createSlice({
         const updatedItems = state.items.filter((p) => p._id !== product._id);
         state.items = updatedItems;
       }
+      global?.localStorage?.setItem(
+        "saved_product",
+        JSON.stringify(state.items)
+      );
     },
   },
 });

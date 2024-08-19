@@ -40,6 +40,11 @@ declare type UserType = {
   slug: string;
 };
 
+declare type PriceHistoryType = {
+  createdAt: string;
+  price: number;
+};
+
 declare type ProductType = {
   _id: string;
   userId: string;
@@ -54,7 +59,7 @@ declare type ProductType = {
   brand: string;
   slug: string;
   color: string;
-  priceHistroy: Array<object>;
+  priceHistroy: PriceHistoryType[];
   views: Array<object>;
   reviews: Array<object>;
   rating: Array<number>;
@@ -162,7 +167,7 @@ declare type CampaignType = {
 declare type EarningsChartType = {
   chartData: any[];
   category: string[];
-  earned: number;
+  earned?: number;
   header: string;
 };
 

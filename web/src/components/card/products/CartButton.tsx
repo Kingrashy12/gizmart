@@ -10,6 +10,7 @@ import {
   removeItem,
 } from "@/redux/cartSlice";
 import { RiEdit2Fill } from "@remixicon/react";
+import EditProduct from "@/components/modal/EditProduct";
 
 type CartButtonType = {
   product: ProductType;
@@ -21,6 +22,7 @@ const CartButton = ({ product }: CartButtonType) => {
   const cart = cartState.items;
   const isAdded = cart?.find((item) => item._id === product._id);
   const userId = useAppSelector((state) => state.auth.userId);
+  const [openEdit, setOpenEdit] = useState(false);
 
   const qty = cartState.quantity.filter((pr) => pr === product._id);
   function add_ToCart(e: React.ChangeEvent | any) {
@@ -48,6 +50,7 @@ const CartButton = ({ product }: CartButtonType) => {
   }
   function edit(e: React.ChangeEvent) {
     e.preventDefault();
+    setOpenEdit(true);
   }
 
   return (
@@ -89,6 +92,11 @@ const CartButton = ({ product }: CartButtonType) => {
           )}
         </>
       )}
+      <EditProduct
+        closeEdit={() => setOpenEdit(false)}
+        product={product}
+        isOpen={openEdit}
+      />
     </Flex>
   );
 };

@@ -56,7 +56,7 @@ const SellerProductsTable = ({ products }: PDashType) => {
         </TableHead>
 
         <TableBody>
-          {currentData.map((product, index) => (
+          {currentData?.map((product, index) => (
             <SellerProductCard key={index} product={product} />
           ))}
         </TableBody>

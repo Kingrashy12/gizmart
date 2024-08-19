@@ -6,7 +6,7 @@ type IconType = {
   color?: string;
   className?: string;
   size: number;
-  onClick?: () => void;
+  onClick?: (event?: any) => void;
   useCustom?: boolean;
 };
 
