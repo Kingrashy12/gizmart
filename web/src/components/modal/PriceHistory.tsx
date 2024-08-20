@@ -24,6 +24,7 @@ const PriceHistory: React.FC<{
             chartData={productPriceHistory}
             category={["price"]}
             header="Price history"
+            product={product}
           />
         </Flex>
       </Flex>

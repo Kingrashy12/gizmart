@@ -5,6 +5,7 @@ import {
   getProduct,
   getProducts,
   getSellerProducts,
+  updateProduct,
 } from "../controllers/Product";
 
 const ProductRoute = express.Router();
@@ -16,5 +17,6 @@ ProductRoute.get("/one/:slug/view/:userId", getProduct);
 ProductRoute.get("/seller/:userId", getSellerProducts);
 // PATCH
 ProductRoute.patch("/delete", deleteProduct);
+ProductRoute.patch("/update", updateProduct);
 
 export default ProductRoute;

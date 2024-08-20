@@ -10,6 +10,7 @@ import VoucherCard from "../voucher/admin/VoucherCard";
 
 const Vouchers = () => {
   const { isOpen, onClose } = useVouchers();
+  const { isOpen: loaderOpen } = useBackgroundLoader();
   const dispatch = useAppDispatch();
   const voucherState = useAppSelector((state) => state.voucher);
   const isfetching = voucherState._all_fetchStatus === "pending";
@@ -29,8 +30,16 @@ const Vouchers = () => {
     }
   }, [isfetching]);
 
+  function log() {
+    console.log("");
+  }
+
   return (
-    <Dialog open={isOpen} onClose={onClose} className="z-[500]">
+    <Dialog
+      open={isOpen}
+      onClose={loaderOpen ? log : onClose}
+      className={`z-[500] ${loaderOpen ? "cursor-not-allowed" : ""}`}
+    >
       <DialogPanel className="p-0">
         <Flex className="flex-col h-[80%] gap-3 text-black">
           <Flex className="p-3 justify-between border-b items-center">

@@ -36,10 +36,10 @@ export const generateVoucher: RequestHandler = async (req, res) => {
 export const validateVoucher: RequestHandler = async (req, res) => {
   try {
     const { code } = req.params;
-    const { collection, userId, price } = req.body;
+    const { category, userId, price } = req.body;
 
     if (!code) return res.status(400).json("Voucher code is required.");
-    if (!collection || !userId)
+    if (!category || !userId)
       return res.status(400).json("Validation fields are required.");
     if (!price) return res.status(400).json("Price is required.");
 
@@ -67,10 +67,6 @@ export const validateVoucher: RequestHandler = async (req, res) => {
       return data;
     };
 
-    // const updateVoucherUsage = async () => {
-    //   await voucher.updateOne({ $push: { usedBy: userId } });
-    // };
-
     if (voucher.allProducts) {
       // Check if voucher has a user limit and if the user has used it before
       if (voucher.hasLimit && voucher.usedBy.includes(userId)) {
@@ -81,15 +77,15 @@ export const validateVoucher: RequestHandler = async (req, res) => {
       // await updateVoucherUsage();
       return res.status(200).json(discountedPrice);
     } else {
-      // Check if voucher can be used on the selected collection
-      const canBeUsedOn = collection.some((c: any) =>
+      // Check if voucher can be used on the selected category
+      const canBeUsedOn = category.some((c: any) =>
         voucher.allowedProducts.includes(c)
       );
 
       if (!canBeUsedOn) {
         return res
           .status(403)
-          .json("Voucher can't be used on the selected collection.");
+          .json("Voucher can't be used on the selected category.");
       }
 
       if (voucher.hasLimit && voucher.usedBy.includes(userId)) {

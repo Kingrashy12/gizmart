@@ -1,13 +1,39 @@
 import { Flex, HeaderOne, Paragraph } from "@/lib";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import TypeCard from "./TypeCard";
 import { formatDateBy } from "@/utils";
+import io from "socket.io-client";
+import { SOCKET_URL } from "@/constants";
+import { useAppDispatch } from "@/hooks/store";
+import { readNotification } from "@/redux/notificationSlice";
 
 const NotificationCard: React.FC<{ notification: NotificationType }> = ({
   notification,
 }) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const socket = io(SOCKET_URL);
+
+    socket.on("notification", (notification: NotificationType) => {
+      if (notification._id === notification._id) {
+        dispatch(readNotification(notification));
+      }
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [dispatch, notification._id]);
+
+  const handleRead = useCallback(() => {
+    const socket = io(SOCKET_URL);
+    socket.emit("read_notification", notification._id);
+  }, [notification._id]);
+
   return (
     <Flex
+      onClick={handleRead}
       className={`p-3 gap-3 cursor-pointer ${
         notification.seen ? "" : "bg-blue-50"
       }`}

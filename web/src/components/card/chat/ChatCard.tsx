@@ -109,7 +109,9 @@ const ChatCard = ({ chat, userId, activeUser }: ChatCardProps) => {
             fontInter
             className="font-medium text-sm text-gray-400 max-w-[90%] truncate max-[1024px]:hiddin max-[550px]:flex"
           >
-            {lastMessage?.message}
+            {lastMessage?.message?.length > 12
+              ? lastMessage?.message.slice(0, 12) + "..."
+              : lastMessage?.message}
           </Paragraph>
           <MessageAlert
             alert={unreadMessages.length}

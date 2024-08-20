@@ -16,6 +16,7 @@ declare type AuthState = {
   isSeller: boolean;
   isVerified: boolean;
   isNumberVerified: boolean;
+  address: AddressType[];
   loginStatus: StatusType;
   loginError: string | any;
   registerStatus: StatusType;
@@ -27,6 +28,8 @@ declare type AuthState = {
   updateStatus: StatusType;
   updateError: string | any;
   userLoaded: boolean;
+  addressStatus: StatusType;
+  addressError: string | any;
 };
 
 // Context Types
@@ -55,6 +58,8 @@ declare type ProductStateType = {
   fetch_products_error: string | any;
   delete_status: StatusType;
   delete_error: string | any;
+  editStatus: StatusType;
+  editError: string | any;
 };
 
 type Seller_Type = {

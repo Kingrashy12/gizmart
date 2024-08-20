@@ -5,6 +5,7 @@ import UserModel from "../models/User";
 import PriceModel from "../models/PriceHistroy";
 import slugify from "../utils/slugify";
 import { pLimit } from "../middleware/pLimit";
+import { update_product } from "../middleware/update/product";
 
 export const createProduct: RequestHandler = async (req, res) => {
   try {
@@ -82,7 +83,7 @@ export const getProducts: RequestHandler = async (req, res) => {
     res.status(200).json(products);
   } catch (error: any) {
     console.log(error.message);
-    res.status(500).json(error.message);
+    res.status(500).json("Internal server error");
   }
 };
 
@@ -140,6 +141,22 @@ export const deleteProduct: RequestHandler = async (req, res) => {
       await user.save();
       return res.status(200).json(product);
     }
+  } catch (error: any) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+};
+
+export const updateProduct: RequestHandler = async (req, res) => {
+  try {
+    const { userId, productId } = req.body;
+    if (!productId) return res.status(400).json("productId is missing");
+    if (!userId) return res.status(400).json("userId is missing");
+    const updatedProduct = await update_product(productId, userId, req.body);
+    res.status(200).json({
+      message: "Product successfully updated",
+      product: updatedProduct,
+    });
   } catch (error: any) {
     console.log(error.message);
     res.status(500).json(error.message);

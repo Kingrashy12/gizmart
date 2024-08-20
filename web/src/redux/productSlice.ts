@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   createProduct,
   deleteProduct,
+  editProduct,
   getProducts,
   getSellerProducts,
 } from "./thunks/product";
@@ -20,6 +21,8 @@ const initialState: ProductStateType = {
   fetch_products_error: "",
   delete_status: "",
   delete_error: "",
+  editStatus: "",
+  editError: "",
 };
 
 const productSlice = createSlice({
@@ -89,6 +92,28 @@ const productSlice = createSlice({
         delete_error: action.payload,
         delete_status: "failed",
       };
+    });
+    builder.addCase(editProduct.pending, (state) => {
+      return { ...state, editStatus: "pending" };
+    });
+    builder.addCase(editProduct.fulfilled, (state, action) => {
+      toast.success(action.payload?.message);
+      const updated = action.payload?.product;
+      const updatedProduct = state.products.map((product) =>
+        product._id === updated._id ? updated : product
+      );
+      const updatedProducts = state.seller_products.map((product) =>
+        product._id === updated._id ? updated : product
+      );
+      return {
+        ...state,
+        editStatus: "successful",
+        products: updatedProduct,
+        seller_products: updatedProducts,
+      };
+    });
+    builder.addCase(editProduct.rejected, (state, action) => {
+      return { ...state, editError: action.payload, editStatus: "failed" };
     });
   },
 });

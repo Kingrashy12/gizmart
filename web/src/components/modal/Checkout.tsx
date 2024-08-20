@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { productCheckout } from "@/redux/thunks/order";
 import { clear_cart } from "@/redux/cartSlice";
 import { useCongrats } from "@/context/useCongrats";
+import AddressSection from "../products/checkout/AddressSection";
 
 const Checkout = () => {
   const { onOpen, onClose } = useBackgroundLoader();
@@ -22,6 +23,7 @@ const Checkout = () => {
   const is_creating = orderState.createStatus === "pending";
   const { isOpen, onClose: closeCheckOut } = useCheckOutModal();
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [deliveryAddress, setDeliveryAddress] = useState<AddressType | any>();
   const { onOpen: openSuccess } = useCongrats();
 
   function calFee() {
@@ -71,6 +73,7 @@ const Checkout = () => {
         eachQuantity: orderState.check_out.eachQuantity,
         totalPrice: calTotal(),
         payment_method: paymentMethod,
+        delivery_address: deliveryAddress,
         voucherCode: voucherState.applied,
       })
     );
@@ -91,6 +94,7 @@ const Checkout = () => {
         <OrderSummary />
         <VoucherInput />
         <PaymentSection setPaymentMethod={setPaymentMethod} />
+        <AddressSection setDeliveryAddress={setDeliveryAddress} />
         <div className="p-3">
           <CustomButton
             variant="primary"

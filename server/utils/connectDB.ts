@@ -41,7 +41,19 @@ const connectDB = async () => {
     await mongoose.connect(DB_STRING, options);
     console.log("Connected to DB successfully");
   } catch (error: any) {
-    console.error(`Connection failed: ${error.message}`);
+    if (
+      error.name === "MongoNetworkError" &&
+      error.message.includes("ETIMEDOU")
+    ) {
+      console.error("Connection timed out: Please check your network status.");
+    } else if (
+      error.name === "MongoNetworkError" &&
+      error.message.includes("ETIMEDOUT")
+    ) {
+      throw new Error("Server timed out");
+    } else {
+      console.error(`Connection failed: ${error.message}`);
+    }
     process.exit(1); // Optionally exit the process if the connection fails
   }
 };

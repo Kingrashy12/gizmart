@@ -6,6 +6,7 @@ import {
   updateEmail,
   upgradeToSeller,
   updateProfile,
+  addAddress,
 } from "./thunks/auth";
 import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
@@ -21,6 +22,7 @@ const initialState: AuthState = {
   isSeller: false,
   isVerified: false,
   isNumberVerified: false,
+  address: [],
   loginStatus: "",
   loginError: "",
   registerStatus: "",
@@ -32,6 +34,8 @@ const initialState: AuthState = {
   mailUpdateError: "",
   updateStatus: "",
   updateError: "",
+  addressStatus: "",
+  addressError: "",
 };
 
 const AuthSlice = createSlice({
@@ -72,6 +76,7 @@ const AuthSlice = createSlice({
         isAdmin: "",
         isSeller: "",
         isNumberVerified: "",
+        address: [],
         userLoaded: false,
       };
     },
@@ -103,6 +108,7 @@ const AuthSlice = createSlice({
         isAdmin: user.isAdmin,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
+        address: user.address,
         userLoaded: true,
         registerStatus: "successful",
       };
@@ -139,6 +145,7 @@ const AuthSlice = createSlice({
         isAdmin: user.isAdmin,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
+        address: user.address,
         userLoaded: true,
         loginStatus: "successful",
       };
@@ -168,6 +175,7 @@ const AuthSlice = createSlice({
         isAdmin: user.isAdmin,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
+        address: user.address,
         userLoaded: true,
         loginStatus: "successful",
       };
@@ -197,6 +205,7 @@ const AuthSlice = createSlice({
         isAdmin: user.isAdmin,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
+        address: user.address,
         userLoaded: true,
         upgradeStatus: "successful",
       };
@@ -244,9 +253,39 @@ const AuthSlice = createSlice({
     builder.addCase(updateProfile.rejected, (state, action) => {
       return { ...state, updateStatus: "failed", updateError: action.payload };
     });
+    builder.addCase(addAddress.pending, (state) => {
+      return { ...state, addressStatus: "pending" };
+    });
+    builder.addCase(addAddress.fulfilled, (state, action) => {
+      toast.success(action.payload?.message);
+      const token = action.payload.token;
+      const user: UserType = jwtDecode(token);
+
+      return {
+        ...state,
+        token: token,
+        name: user.name,
+        email: user.email,
+        userId: user._id,
+        profile: user.profile,
+        number: user.number,
+        isAdmin: user.isAdmin,
+        isSeller: user.isSeller,
+        isNumberVerified: user.isNumberVerified,
+        address: user.address,
+        addressStatus: "successful",
+      };
+    });
+    builder.addCase(addAddress.rejected, (state, action) => {
+      return {
+        ...state,
+        addressStatus: "failed",
+        addressError: action.payload,
+      };
+    });
   },
 });
-
+//
 export default AuthSlice.reducer;
 
 export const { loadUser, logUserout } = AuthSlice.actions;

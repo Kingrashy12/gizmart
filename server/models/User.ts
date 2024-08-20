@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema(
     vouchers: { type: Array, default: [] },
     chats: { type: Array, default: [] },
     notifications: { type: Array, default: [] },
+    address: { type: Array, default: [] },
   },
   { timestamps: true }
 );

@@ -1,5 +1,6 @@
 import { API_URL } from "@/constants";
 import {
+  add_address,
   update_email,
   update_profile,
   UpgradeToSeller,
@@ -118,7 +119,22 @@ export const updateProfile = createAsyncThunk(
     } catch (error: any) {
       toast.error(error.response?.data);
       console.log(error.response?.data);
-      rejectWithValue(error.response?.data);
+      return rejectWithValue(error.response?.data);
+    }
+  }
+);
+
+export const addAddress = createAsyncThunk(
+  "auth/add-address",
+  async ({ ...form }: AddAddressFormType, { rejectWithValue }) => {
+    try {
+      const res = await add_address(form);
+      global?.localStorage?.setItem("gizmart_auth_key", res?.token);
+      return res;
+    } catch (error: any) {
+      toast.error(error.response?.data);
+      console.log(error.response?.data);
+      return rejectWithValue(error.response?.data);
     }
   }
 );

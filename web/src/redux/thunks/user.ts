@@ -13,7 +13,7 @@ export const fetchSeller = createAsyncThunk(
     } catch (error: any) {
       toast.error(error.response?.data);
       console.log(error.response?.data);
-      rejectWithValue(error.response?.data);
+      return rejectWithValue(error.response?.data);
     }
   }
 );

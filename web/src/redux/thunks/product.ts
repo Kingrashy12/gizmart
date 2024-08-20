@@ -1,4 +1,5 @@
 import { API_URL } from "@/constants";
+import { edit_product } from "@/helper/patch.action";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -38,7 +39,7 @@ export const createProduct = createAsyncThunk(
     } catch (error: any) {
       toast.error(error.response?.data);
       console.log(error.response?.data);
-      rejectWithValue(error.response?.data);
+      return rejectWithValue(error.response?.data);
     }
   }
 );
@@ -52,7 +53,7 @@ export const getProducts = createAsyncThunk(
     } catch (error: any) {
       toast.error(error.response?.data);
       console.log(error.response?.data);
-      rejectWithValue(error.response?.data);
+      return rejectWithValue(error.response?.data);
     }
   }
 );
@@ -66,7 +67,7 @@ export const getSellerProducts = createAsyncThunk(
     } catch (error: any) {
       toast.error(error.response?.data);
       console.log(error.response?.data);
-      rejectWithValue(error.response?.data);
+      return rejectWithValue(error.response?.data);
     }
   }
 );
@@ -88,7 +89,21 @@ export const deleteProduct = createAsyncThunk(
     } catch (error: any) {
       toast.error(error.response?.data);
       console.log(error.response?.data);
-      rejectWithValue(error.response?.data);
+      return rejectWithValue(error.response?.data);
+    }
+  }
+);
+
+export const editProduct = createAsyncThunk(
+  "product/edit",
+  async ({ ...form }: EditProductBodyType, { rejectWithValue }) => {
+    try {
+      const product = await edit_product(form);
+      return product;
+    } catch (error: any) {
+      toast.error(error.response?.data);
+      console.log(error.response?.data);
+      return rejectWithValue(error.response?.data);
     }
   }
 );

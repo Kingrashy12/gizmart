@@ -4,8 +4,8 @@ import React from "react";
 
 const BackgroundLoader = () => {
   return (
-    <div className="fixed flex flex-col items-center justify-center z-[1000] w-full h-full bg-[rgb(0,0,0,0.5)] inset-0 top-0 bottom-0">
-      <div className="p-5 rounded-full drop-shadow relative">
+    <div className="fixed flex flex-col items-center cursor-not-allowed justify-center z-[1000] w-full h-full bg-[rgb(0,0,0,0.5)] inset-0 top-0 bottom-0 select-none">
+      <div className="p-5 rounded-full drop-shadow relative cursor-not-allowed">
         <div className="loader_bg absolute top-0 left-0 w-full h-full rounded-full"></div>
         <StaticImage
           src={MainLogo}

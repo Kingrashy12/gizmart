@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Title from "../indicator/Title";
 import { Icon } from "@tremor/react";
 import { CustomIconType } from "@/types/app";
+import { IconWrap } from "..";
 
 const CustomIcon = ({
   icon,
@@ -16,6 +17,7 @@ const CustomIcon = ({
   disabled,
   onClick,
   useCustom,
+  customIconSize,
 }: CustomIconType) => {
   const [showTitle, setShowTitle] = useState(false);
   function showT() {
@@ -36,16 +38,29 @@ const CustomIcon = ({
           width={titleWidth}
         />
       )}
-      <Icon
-        icon={icon}
-        onMouseEnter={showT}
-        onMouseLeave={hideT}
-        className={`${iconClass} z-50 ${
-          disabled ? "text-neutral-400 cursor-not-allowed" : "cursor-pointer"
-        }`}
-        size={iconSize}
-        onClick={onClick}
-      />
+      {useCustom ? (
+        <IconWrap
+          Icon={icon}
+          onMouseEnter={showT}
+          onMouseLeave={hideT}
+          className={`${iconClass} z-50 ${
+            disabled ? "text-neutral-400 cursor-not-allowed" : "cursor-pointer"
+          }`}
+          size={customIconSize}
+          onClick={onClick}
+        />
+      ) : (
+        <Icon
+          icon={icon}
+          onMouseEnter={showT}
+          onMouseLeave={hideT}
+          className={`${iconClass} z-50 ${
+            disabled ? "text-neutral-400 cursor-not-allowed" : "cursor-pointer"
+          }`}
+          size={iconSize}
+          onClick={onClick}
+        />
+      )}
     </Flex>
   );
 };

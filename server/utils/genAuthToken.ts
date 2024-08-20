@@ -18,6 +18,7 @@ const genAuthToken = (user: UserTokenType) => {
       isNumberVerified: user.isNumberVerified,
       profile: user.profile,
       number: user.number,
+      address: user.address,
     },
     authKey
   );

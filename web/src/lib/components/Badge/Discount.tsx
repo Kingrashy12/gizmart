@@ -1,5 +1,6 @@
 import { robotoFont } from "@/lib/fonts/font";
 import React from "react";
+import Paragraph from "../Text/Paragraph";
 
 interface DiscountProps {
   value: any;
@@ -10,11 +11,15 @@ interface DiscountProps {
 const Discount = ({ value, style, className }: DiscountProps) => {
   return (
     <div
-      className={`absolute bg-[red] w-7 border border-white right-3 top-3 h-7 flex items-center justify-center rounded-full ${className} ${robotoFont.className}`}
+      className={`absolute bg-[red] w-7 border border-white right-1 top-1 h-7 flex items-center justify-center rounded-full ${className}`}
     >
-      <p className="text-center font-medium text-xs text-white" style={style}>
-        {`-${value}`}
-      </p>
+      <Paragraph
+        fontInter
+        className="text-center font-medium text-xs text-white"
+        style={style}
+      >
+        {value}
+      </Paragraph>
     </div>
   );
 };

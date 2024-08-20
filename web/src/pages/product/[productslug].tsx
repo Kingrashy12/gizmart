@@ -24,7 +24,7 @@ const ProductSlug = ({ product, hasFailed, fetchedError }: ProductPage) => {
       >
         <Head>
           <title>
-            {hasFailed ? "Something went wrong" : product.name} - Gizmart
+            {hasFailed ? "Something went wrong" : product?.name} - Gizmart
           </title>
         </Head>
         {hasFailed ? (

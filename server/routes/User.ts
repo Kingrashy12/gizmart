@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  addAddress,
   getSeller,
   getUserById,
   getUsers,
@@ -18,5 +19,6 @@ UserRoute.get("/seller/:slug", getSeller);
 UserRoute.post("/upgrade-to-seller", UpgradeToSeller);
 // PATCH
 UserRoute.patch("/update-profile", updateProfile);
+UserRoute.patch("/add-address", addAddress);
 
 export default UserRoute;

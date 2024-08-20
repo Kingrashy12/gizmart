@@ -1,31 +1,67 @@
 import { Flex } from "@/lib";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductEditForm from "../form/ProductEditForm";
 import CustomButton from "../CustomButton";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
+import { useBackgroundLoader } from "@/context/useBackgroundLoader";
+import { editProduct } from "@/redux/thunks/product";
+import { getUpdatedValue } from "@/utils/func";
 
 interface EditProps {
   product: ProductType;
 }
 
 const ProductEdit = ({ product }: EditProps) => {
+  const editState = useAppSelector((state) => state.product);
+  const isLoading = editState.editStatus === "pending";
+  const { onClose, onOpen } = useBackgroundLoader();
+  const userId = useAppSelector((state) => state.auth.userId);
   const [form, setForm] = useState({
+    userId: userId,
+    productId: product._id,
     name: product.name,
     price: product.price,
     quantity: product.quantity,
     description: product.description,
   });
 
+  useEffect(() => {
+    if (isLoading) {
+      onOpen();
+    } else {
+      onClose();
+    }
+  }, [isLoading]);
+
+  const dispatch = useAppDispatch();
+
   const issame =
-    form.name !== product.name ||
-    form.description !== product.description ||
-    form.price !== product.price ||
-    form.quantity !== product.quantity;
+    form.name == product.name &&
+    form.description == product.description &&
+    form.price == product.price &&
+    form.quantity == product.quantity;
 
   function handleForm(
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
+  }
+
+  function edit() {
+    if (form.price != product.price) {
+      dispatch(editProduct(form));
+    } else {
+      dispatch(
+        editProduct({
+          userId,
+          productId: product._id,
+          name: form.name,
+          description: form.description,
+          quantity: form.quantity,
+        })
+      );
+    }
   }
 
   return (
@@ -64,7 +100,11 @@ const ProductEdit = ({ product }: EditProps) => {
           variant="price"
         />
       </Flex>
-      <CustomButton variant="primary" disabled={!issame}>
+      <CustomButton
+        onClick={edit}
+        variant="primary"
+        disabled={issame || isLoading}
+      >
         Save
       </CustomButton>
     </Flex>

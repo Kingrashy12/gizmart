@@ -1,5 +1,13 @@
 import { Request } from "express";
 
+export type AddressType = {
+  state: string;
+  city: string;
+  address: string;
+  current: boolean;
+  id: string;
+};
+
 export type UserTokenType = {
   name: string;
   email: string;
@@ -11,6 +19,7 @@ export type UserTokenType = {
   isVerified: boolean;
   isNumberVerified: boolean;
   _id?: string | any;
+  address: AddressType[];
 };
 
 export interface AuthenticatedRequest extends Request {

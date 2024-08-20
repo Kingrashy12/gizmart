@@ -8,6 +8,8 @@ type IconType = {
   size: number;
   onClick?: (event?: any) => void;
   useCustom?: boolean;
+  onMouseEnter?: React.MouseEventHandler;
+  onMouseLeave?: React.MouseEventHandler;
 };
 
 const Icon = ({
@@ -17,6 +19,8 @@ const Icon = ({
   size,
   onClick,
   useCustom,
+  onMouseEnter,
+  onMouseLeave,
 }: IconType) => {
   return (
     <>
@@ -32,7 +36,12 @@ const Icon = ({
       ) : (
         <div>
           <IconBase size={size} className={className} onClick={onClick}>
-            <Icon size={size} color={color} />
+            <Icon
+              size={size}
+              color={color}
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+            />
           </IconBase>
         </div>
       )}

@@ -17,11 +17,14 @@ export const createOrder: RequestHandler = async (req, res) => {
       eachQuantity,
       payment_method,
       voucherCode,
+      delivery_address,
     } = req.body;
     if (!userId || !products || !totalPrice)
       return res.status(403).json("Order fields is required");
     if (!payment_method)
       return res.status(403).json("Payment method is required");
+    if (!delivery_address?.address)
+      return res.status(400).json("Delivery address is required");
     let sellerId: string = "";
     products.forEach((product: any) => {
       sellerId = product?.userId;
@@ -32,7 +35,8 @@ export const createOrder: RequestHandler = async (req, res) => {
       eachQuantity,
       totalPrice,
       payment_method,
-      slug: generateCode(24),
+      delivery_address,
+      slug: generateCode(10),
       status: "pending",
       sellerId,
       orderNumber: generateNumber(10),

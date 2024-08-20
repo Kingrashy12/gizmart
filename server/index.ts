@@ -17,6 +17,7 @@ import compression from "compression";
 import handleMessageSocket from "./socket/message";
 import handleNotificationFetch, {
   fetchNotifications,
+  readNotification,
 } from "./socket/notifications";
 import { generateNumber } from "./utils/generateCode";
 import handleUserStatus from "./socket/chats";
@@ -48,6 +49,7 @@ handleMessageSocket(io);
 handleNotificationFetch(io);
 handleUserStatus(io);
 fetchNotifications(io);
+readNotification(io);
 
 server.use("/v1/auth", AuthRoute);
 server.use("/v1/user", UserRoute);

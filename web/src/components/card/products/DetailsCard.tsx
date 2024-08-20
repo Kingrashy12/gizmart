@@ -37,13 +37,24 @@ const DetailsCard = ({ product }: CurrentProps) => {
   return (
     <Flex className="flex-col gap-3 max-[480px]:p-2">
       <FlexBetween className="items-center">
-        <HeaderOne
-          fontPoppins
-          fontWeight="bold"
-          className="text-3xl max-[480px]:text-2xl"
-        >
-          ₦ {product.price?.toLocaleString()}
-        </HeaderOne>
+        <div className="flex flex-col">
+          <HeaderOne
+            fontPoppins
+            fontWeight="bold"
+            className="text-3xl max-[480px]:text-2xl"
+          >
+            ₦ {product.price?.toLocaleString()}
+          </HeaderOne>
+          <HeaderOne
+            fontPoppins
+            fontWeight="medium"
+            className={`text-xl max-[550px]:text-lg text-neutral-500 line-through ${
+              !product.formalPrice && "hidden"
+            }`}
+          >
+            ₦ {product?.formalPrice?.toLocaleString()}
+          </HeaderOne>
+        </div>
         <IconWrap
           size={35}
           className=" cursor-pointer text-primaryColor p-1 hover:bg-neutral-100 rounded-lg"

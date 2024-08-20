@@ -10,6 +10,7 @@ const OrderSchema = new mongoose.Schema(
     status: { type: String, required: true },
     deliveryStatus: { type: String, default: "Pending" },
     payment_method: { type: String, required: true },
+    delivery_address: { type: Object, required: true },
     slug: { type: String, required: true },
     orderNumber: { type: String, required: true },
   },

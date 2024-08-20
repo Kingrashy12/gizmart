@@ -57,6 +57,7 @@ declare type CustomIconType = {
   onClick?: () => void;
   disabled?: boolean;
   useCustom?: boolean;
+  customIconSize?: number | any;
 };
 declare type CategoriesType = {
   url: string;

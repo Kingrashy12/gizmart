@@ -31,3 +31,21 @@ export function fetchNotifications(io: Server) {
     });
   });
 }
+
+export function readNotification(io: Server) {
+  io.on("connection", (socket) => {
+    socket.on("read_notification", async (notificationId) => {
+      try {
+        const notification = await NotificationModel.findByIdAndUpdate(
+          notificationId,
+          { $set: { seen: true } },
+          { new: true }
+        );
+        socket.emit("notification", notification, notificationId);
+      } catch (error: any) {
+        console.log("err fetching notification:", error.message);
+        socket.emit("error", "error fetching notification");
+      }
+    });
+  });
+}

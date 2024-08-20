@@ -11,6 +11,7 @@ declare type CheckOutBody = {
   eachQuantity: string[];
   totalPrice: number;
   payment_method: string;
+  delivery_address: AddressType;
   voucherCode: string;
 };
 
@@ -26,7 +27,7 @@ declare type VoucherGenerationtype = {
 };
 
 declare type ValidateVoucherType = {
-  collection: string[];
+  category: string[];
   userId: string;
   price: number;
   code: string;
@@ -64,4 +65,21 @@ declare type ProfileUpdateType = {
 declare type EmailUpdateType = {
   userId: string;
   email: string;
+};
+
+declare type EditProductBodyType = {
+  userId: string;
+  productId: string;
+  price?: number | any;
+  name?: string;
+  description?: string;
+  quantity?: number | any;
+};
+
+declare type AddAddressFormType = {
+  userId: string;
+  state: string;
+  city: string;
+  address: string;
+  current: boolean;
 };

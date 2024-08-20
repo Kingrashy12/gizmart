@@ -37,6 +37,7 @@ export async function create_order(body: CheckOutBody) {
     eachQuantity: body.eachQuantity,
     totalPrice: body.totalPrice,
     payment_method: body.payment_method,
+    delivery_address: body.delivery_address,
     voucherCode: body.voucherCode,
   });
   return order.data;

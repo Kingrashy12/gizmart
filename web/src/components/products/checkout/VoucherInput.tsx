@@ -19,15 +19,13 @@ const VoucherInput = () => {
   const has_error = voucherState.validateStatus === "failed";
   const { onClose, onOpen } = useBackgroundLoader();
 
-  function getCol() {
-    const collection = checkedOrder.products.map(
-      (product) => product.collection
-    );
+  function getCat() {
+    const collection = checkedOrder.products.map((product) => product.category);
 
     return collection;
   }
 
-  const collection = getCol();
+  const category = getCat();
 
   useEffect(() => {
     if (is_validating) {
@@ -39,7 +37,7 @@ const VoucherInput = () => {
 
   function apply() {
     dispatch(
-      ApplyVoucher({ code, userId, price: checkedOrder.totalPrice, collection })
+      ApplyVoucher({ code, userId, price: checkedOrder.totalPrice, category })
     );
   }
   function onKeyApply(e: React.KeyboardEvent) {
@@ -49,7 +47,7 @@ const VoucherInput = () => {
           code,
           userId,
           price: checkedOrder.totalPrice,
-          collection,
+          category,
         })
       );
     }

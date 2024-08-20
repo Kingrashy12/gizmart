@@ -1,5 +1,19 @@
 declare type AccountType = "buyer" | "seller" | "marchant" | "";
-declare type SettingsCurrentType = "password" | "email" | "info" | "";
+declare type SettingsCurrentType =
+  | "password"
+  | "email"
+  | "info"
+  | "address"
+  | "add-address"
+  | "";
+
+declare type AddressType = {
+  state: string;
+  city: string;
+  address: string;
+  current: boolean;
+  id: string;
+};
 
 declare type PasswordInputType = {
   placeholder: string;
@@ -38,6 +52,7 @@ declare type UserType = {
   isVerified: boolean;
   isNumberVerified: boolean;
   slug: string;
+  address: AddressType[];
 };
 
 declare type PriceHistoryType = {
@@ -66,6 +81,7 @@ declare type ProductType = {
   delivery_fee: number;
   isPromoted: boolean;
   createdAt: string | Date;
+  formalPrice: number;
   // seller
   sellerSlug: string;
   sellerProfile: any;
@@ -169,6 +185,7 @@ declare type EarningsChartType = {
   category: string[];
   earned?: number;
   header: string;
+  product?: ProductType;
 };
 
 declare type DonutChartType = {

@@ -25,7 +25,7 @@ export async function validate_voucher(data: ValidateVoucherType) {
   const discountedPrice = await axios.patch(
     `${API_URL}/voucher/validate/${data.code}`,
     {
-      collection: data.collection,
+      category: data.category,
       userId: data.userId,
       price: data.price,
     }
@@ -106,4 +106,16 @@ export async function update_profile(form: ProfileUpdateType) {
     name: form.name,
   });
   return res.data;
+}
+
+export async function edit_product(form: EditProductBodyType) {
+  const product = await axios.patch(`${API_URL}/products/update`, { ...form });
+
+  return product.data;
+}
+
+export async function add_address(form: AddAddressFormType) {
+  const user = await axios.patch(`${API_URL}/user//add-address`, { ...form });
+
+  return user.data;
 }

@@ -5,6 +5,7 @@ import SettingsCard, { SolidSettingsCard } from "../card/SettingsCard";
 import { FaPhoneAlt, FaUserCircle } from "react-icons/fa";
 import { MdAlternateEmail, MdOutlineDelete } from "react-icons/md";
 import { RiLockPasswordLine } from "@remixicon/react";
+import { BsHouseAddFill } from "react-icons/bs";
 
 interface MainProps {
   onClose: () => void;
@@ -34,6 +35,11 @@ const MainCard = ({ onClose, exitChange }: MainProps) => {
         icon={<MdAlternateEmail size={25} />}
         setting="Change email"
         onClick={() => exitChange("email")}
+      />
+      <SettingsCard
+        icon={<BsHouseAddFill size={25} />}
+        setting="Manage Address"
+        onClick={() => exitChange("address")}
         hideDivider
       />
       <div className="bg-softGray p-9" />

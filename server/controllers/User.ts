@@ -4,6 +4,7 @@ import genAuthToken from "../utils/genAuthToken";
 import ProductModel from "../models/Products";
 import uploadImage from "../middleware/uploadImage";
 import { updatedUser } from "../middleware/update/user";
+import { generateNumber } from "../utils/generateCode";
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -87,6 +88,36 @@ export const updateProfile: RequestHandler = async (req, res) => {
       const data = await updatedUser(userId, body, res);
       res.status(200).json({ message: "Profile updated", data });
     }
+  } catch (error: any) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+};
+
+export const addAddress: RequestHandler = async (req, res) => {
+  try {
+    const { userId, state, city, address, current } = req.body;
+    if (!userId) return res.status(400).json("userId is missing");
+    if (!state || !city || !address)
+      return res.status(400).json("address fileds is missing");
+    const newAddress = {
+      state,
+      city,
+      address,
+      current,
+      id: generateNumber(10),
+    };
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      userId,
+      { $push: { address: newAddress } },
+      { new: true }
+    );
+    if (!updatedUser) return res.status(404).json("Internal server error");
+    const token = genAuthToken(updatedUser);
+    res.status(200).json({
+      message: "Address successfully added",
+      token,
+    });
   } catch (error: any) {
     console.log(error.message);
     res.status(500).json(error.message);
