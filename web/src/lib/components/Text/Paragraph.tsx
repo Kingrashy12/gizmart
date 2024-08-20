@@ -1,4 +1,4 @@
-import { inter, poppinsFont, robotoFont } from "@/lib/fonts/font";
+import { inter, jakarta, poppinsFont, robotoFont } from "@/lib/fonts/font";
 import { TextProps } from "@/lib/types";
 import React from "react";
 
@@ -25,6 +25,7 @@ const Paragraph = ({
   fontWeight,
   fontInter,
   dangerouslySetInnerHTML,
+  fontJakarta,
 }: TextProps) => {
   return (
     <p
@@ -33,7 +34,7 @@ const Paragraph = ({
       dangerouslySetInnerHTML={dangerouslySetInnerHTML}
       className={`${className} ${fontPoppins && poppinsFont.className} ${
         fontRoboto && robotoFont.className
-      } ${fontInter && inter.className}`}
+      } ${fontInter && inter.className} ${fontJakarta && jakarta.className}`}
     >
       {children}
     </p>

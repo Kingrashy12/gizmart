@@ -56,15 +56,19 @@ const Container = ({ chats, isLoading, userId, activeUser }: ChatsProps) => {
         <Divider />
       )}
       <Flex
-        className={isLoading ? "hidden" : "flex-col gap-3 overflow-y-auto px-2"}
+        className={
+          isLoading ? "hidden" : "flex-col gap-3 overflow-y-auto px-2 h-full"
+        }
       >
         {chats?.length < 1 ? (
-          <Paragraph
-            fontPoppins
-            className="font-medium text-center text-neutral-400/"
-          >
-            Your chat list is empty. Start a conversation today!
-          </Paragraph>
+          <div className="flex flex-col w-full h-full justify-center items-center relative">
+            <Paragraph
+              fontPoppins
+              className="font-medium text-center text-neutral-400/"
+            >
+              Your chat list is empty. Start a conversation today!
+            </Paragraph>
+          </div>
         ) : (
           chats.map((chat, index) => (
             <ChatCard

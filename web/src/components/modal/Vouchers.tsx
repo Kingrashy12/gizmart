@@ -18,9 +18,9 @@ const Vouchers = () => {
   const userId = useAppSelector((state) => state.auth.userId);
   const vouchers = voucherState._all;
 
-  useEffect(() => {
-    dispatch(getVouchers(userId));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getVouchers(userId));
+  // }, []);
 
   useEffect(() => {
     if (isfetching) {
@@ -40,8 +40,8 @@ const Vouchers = () => {
       onClose={loaderOpen ? log : onClose}
       className={`z-[500] ${loaderOpen ? "cursor-not-allowed" : ""}`}
     >
-      <DialogPanel className="p-0">
-        <Flex className="flex-col h-[80%] gap-3 text-black">
+      <DialogPanel className="p-0 h-[500px] flex flex-col">
+        <Flex className="flex-col gap-3 text-black overflow-y-auto h-full">
           <Flex className="p-3 justify-between border-b items-center">
             <HeaderOne fontPoppins className="font-medium text-lg">
               Vouchers
@@ -51,13 +51,15 @@ const Vouchers = () => {
               className="p-1 rounded-md hover:bg-neutral-100 cursor-pointer"
             />
           </Flex>
-          <Flex className="flex-col gap-3 overflow-y-auto">
+          <Flex className="flex-col gap-3 overflow-y-auto h-full">
             {vouchers.length < 1 ? (
               <HeaderOne className="p-3 items-center flex justify-center">
                 No vouchers generated yets
               </HeaderOne>
             ) : (
-              vouchers.map((voucher, index) => <VoucherCard key={index} />)
+              vouchers.map((voucher, index) => (
+                <VoucherCard key={index} voucher={voucher} />
+              ))
             )}
           </Flex>
         </Flex>

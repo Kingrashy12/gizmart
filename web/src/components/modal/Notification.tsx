@@ -7,6 +7,7 @@ import { useAppSelector } from "@/hooks/store";
 import Header from "../notification/Header";
 import { formatToWeek } from "@/utils";
 import NotificationCard from "../notification/NotificationCard";
+import { TbBellQuestion } from "react-icons/tb";
 
 const Notification = () => {
   const { onClose, onOpen } = useNotificationModal();
@@ -28,21 +29,36 @@ const Notification = () => {
       <div className={alertClass} onClick={(e) => e.stopPropagation()}>
         <Header onClose={onClose} />
         <Flex className="flex-col gap-6 overflow-y-auto h-[400px] max-[550px]:h-full">
-          {Object.entries(groupedNotifications).map(
-            ([date, notificationsForDate]) => (
-              <div key={date}>
-                <Paragraph
-                  fontInter
-                  className="font-normal text-sm text-neutral-500 p-3"
-                >
-                  {formatToWeek(new Date(date))}
-                </Paragraph>
-                <Flex className="flex-col gap-3">
-                  {notificationsForDate.map((notification, index) => (
-                    <NotificationCard key={index} notification={notification} />
-                  ))}
-                </Flex>
-              </div>
+          {notifications.length < 1 ? (
+            <Flex className="p-3 items-center flex-col justify-center gap-4 h-full">
+              <TbBellQuestion size={50} className="text-neutral-500" />
+              <Paragraph
+                fontPoppins
+                className="text-neutral-500 font-medium text-sm"
+              >
+                You dont have any notifications
+              </Paragraph>
+            </Flex>
+          ) : (
+            Object.entries(groupedNotifications).map(
+              ([date, notificationsForDate]) => (
+                <div key={date}>
+                  <Paragraph
+                    fontInter
+                    className="font-normal text-sm text-neutral-500 p-3"
+                  >
+                    {formatToWeek(new Date(date))}
+                  </Paragraph>
+                  <Flex className="flex-col gap-3">
+                    {notificationsForDate.map((notification, index) => (
+                      <NotificationCard
+                        key={index}
+                        notification={notification}
+                      />
+                    ))}
+                  </Flex>
+                </div>
+              )
             )
           )}
         </Flex>
