@@ -30,7 +30,7 @@ const port = process.env.PORT;
 const httpServer = http.createServer(server);
 export const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://gizmart.vercel.app"],
   },
 });
 
