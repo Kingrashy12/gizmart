@@ -47,7 +47,7 @@ const AddressSection: React.FC<{
                 className="text-neutral-500"
               />
               <Paragraph fontPoppins className="text-neutral-500 font-medium">
-                You're yet to add your delivery address
+                You&apos;re yet to add your delivery address
               </Paragraph>
             </Flex>
           ) : (

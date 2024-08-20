@@ -21,7 +21,7 @@ const SellFormModal = () => {
           <Flex className="flex-col gap-5 items-center justify-center">
             <Icon Icon={VscSignIn} size={60} color="black" />
             <Paragraph fontPoppins className="font-medium text-base">
-              You're not authorized to carry on this action
+              You&apos;re not authorized to carry on this action
             </Paragraph>
             <Link href="/account/login">
               <CustomButton variant="primary" icon={VscSignIn}>

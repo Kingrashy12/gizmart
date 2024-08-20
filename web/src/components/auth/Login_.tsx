@@ -16,7 +16,7 @@ const Login_ = () => {
         </div>
         <LoginForm />
         <p className={`${poppinsFont.className} font-medium text-center`}>
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             className="text-primaryColor hover:underline"
             href="/account/sign-up"
