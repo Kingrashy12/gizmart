@@ -2,7 +2,6 @@ import React from "react";
 import Wrapper from "../Wrapper";
 import { robotoFont } from "@/lib/fonts/font";
 import Product from "@/components/filter/Product";
-import { ProductType } from "./Product";
 
 interface FilterProps {
   product: ProductType[];

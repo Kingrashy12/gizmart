@@ -47,7 +47,7 @@ const Address: React.FC<{
               className="text-neutral-500"
             />
             <Paragraph fontPoppins className="text-neutral-500 font-medium">
-              You're yet to add your address
+              You&apos;re yet to add your address
             </Paragraph>
             <CustomButton
               onClick={() => exitCurrent("add-address")}

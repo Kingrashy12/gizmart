@@ -16,7 +16,7 @@ interface SearchProps {
   fetchedError: string;
 }
 const RequestError = lazy(() => import("@/lib/components/RequestError"));
-const search = ({ products, query, hasFailed, fetchedError }: SearchProps) => {
+const Search = ({ products, query, hasFailed, fetchedError }: SearchProps) => {
   const router = useRouter();
   const empty = products.length < 1;
   return (
@@ -43,7 +43,7 @@ const search = ({ products, query, hasFailed, fetchedError }: SearchProps) => {
   );
 };
 
-export default search;
+export default Search;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context.query;

@@ -83,6 +83,11 @@ const ChatCard = ({ chat, userId, activeUser }: ChatCardProps) => {
       : name;
   const truncate_name = md ? name : lg_name;
 
+  const last_msg =
+    lastMessage && lastMessage?.message?.length > 12
+      ? lastMessage?.message.slice(0, 12) + "..."
+      : lastMessage?.message;
+
   return (
     <>
       {userData ? (
@@ -109,9 +114,7 @@ const ChatCard = ({ chat, userId, activeUser }: ChatCardProps) => {
             fontInter
             className="font-medium text-sm text-gray-400 max-w-[90%] truncate max-[1024px]:hiddin max-[550px]:flex"
           >
-            {lastMessage?.message?.length > 12
-              ? lastMessage?.message.slice(0, 12) + "..."
-              : lastMessage?.message}
+            {last_msg}
           </Paragraph>
           <MessageAlert
             alert={unreadMessages.length}

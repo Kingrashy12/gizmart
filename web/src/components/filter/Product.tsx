@@ -10,7 +10,6 @@ import {
   TextInput,
 } from "@tremor/react";
 import React, { useEffect, useState } from "react";
-import { ProductType } from "../card/products/Product";
 
 interface FilterProps {
   type: "color" | "brand" | "price-range" | "model" | "category";

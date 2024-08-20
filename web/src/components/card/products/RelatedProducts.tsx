@@ -16,13 +16,13 @@ const RelatedProducts = ({ product }: CurrentProps) => {
   }, []);
 
   const filteredProducts = products.filter(
-    (p) => p.collection === product.collection && p.slug !== product.slug
+    (p) => p.category === product.category && p.slug !== product.slug
   );
   const empty = filteredProducts.length < 1;
   return (
     <DisplayCard
       headerLabel="You might also like"
-      allUrl={`/collection/${product.collection}`}
+      allUrl={`/collection/${product.category}`}
       products={filteredProducts}
       className={empty ? "hidden" : ""}
     />

@@ -1,5 +1,6 @@
 import { poppinsFont, robotoFont } from "@/lib/fonts/font";
 import React from "react";
+import { TextProps } from "@/lib/types";
 
 const getWeight = (fontWeight: TextProps["fontWeight"]) => {
   switch (fontWeight) {

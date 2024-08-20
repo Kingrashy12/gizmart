@@ -20,7 +20,7 @@ const EarningChart = ({
       <Flex className="items-center gap-1">
         <p className="text-3xl font-medium">₦</p>
         <p className="text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-          {earned.toLocaleString()}
+          {earned?.toLocaleString()}
         </p>
       </Flex>
       <AreaChart

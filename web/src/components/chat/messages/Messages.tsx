@@ -25,8 +25,9 @@ const Messages = ({ chat, setIsEmojiOpen }: MessagesProps) => {
   const handleScroll = () => {
     const container = chatContainerRef.current;
     const isNearBottom =
+      container &&
       container?.scrollHeight - container?.scrollTop <=
-      container?.clientHeight + 200;
+        container?.clientHeight + 200;
     setShowScrollIcon(!isNearBottom);
   };
 

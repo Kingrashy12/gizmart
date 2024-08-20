@@ -34,11 +34,16 @@ const SellerInfo_Card = ({ user }: SellerCard) => {
   const senderId = User.userId;
   const receiverId = user._id;
 
+  const _User = {
+    _id: user._id,
+    name: user.name,
+    isVerified: user.isVerified,
+    profile: user.profile,
+  };
+
   function chatUser() {
     if (User.userLoaded) {
-      const existingChat = chats.find((chat) =>
-        chat.members.includes(user._id)
-      );
+      const existingChat = chats.find((chat) => chat.members.includes(_User));
       if (existingChat) {
         router.push("/messages");
       } else {
