@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${API_URL}/products/`);
-  const products = await res.json();
+  const products = await res.json().catch((err) => console.log(err));
 
   const paths = products.map((product: ProductType) => ({
     params: { name: product.brand },
