@@ -1,7 +1,7 @@
 import { poppinsFont } from "@/lib/fonts/font";
 import Head from "next/head";
 import React from "react";
-import { ContainerClass, ProductSlugClass } from "./class";
+import { ContainerClass, ProductSlugClass } from "@/class";
 import { Dashboard } from "@/components";
 
 const dashboard = () => {

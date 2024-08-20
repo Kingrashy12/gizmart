@@ -1,7 +1,7 @@
 import { poppinsFont } from "@/lib/fonts/font";
 import Head from "next/head";
 import React, { lazy, Suspense } from "react";
-import { ContainerClass } from "../class";
+import { ContainerClass } from "@/class";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { BackgroundLoader, CollectionContainer } from "@/components";
 import { fetchProducts } from "@/helper/fetch.action";

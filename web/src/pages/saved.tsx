@@ -2,7 +2,7 @@ import { BackgroundLoader, SavedProducts } from "@/components";
 import { poppinsFont } from "@/lib/fonts/font";
 import Head from "next/head";
 import React, { Suspense } from "react";
-import { ContainerClass, ProductSlugClass } from "./class";
+import { ContainerClass, ProductSlugClass } from "@/class";
 
 const saved = () => {
   return (

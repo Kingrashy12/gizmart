@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { lazy, Suspense } from "react";
-import { ContainerClass, ProductSlugClass } from "../class";
+import { ContainerClass, ProductSlugClass } from "@/class";
 import { poppinsFont } from "@/lib/fonts/font";
 import { BackgroundLoader, Current } from "@/components";
 import { GetStaticPaths, GetStaticProps } from "next";

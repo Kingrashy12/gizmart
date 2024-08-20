@@ -1,7 +1,7 @@
 import { fetchProducts } from "@/helper/fetch.action";
 import { No_Products_Found } from "@/lib";
 import { poppinsFont } from "@/lib/fonts/font";
-import { ContainerClass } from "@/pages/class";
+import { ContainerClass } from "@/class";
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import React, { lazy, Suspense } from "react";

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { Suspense } from "react";
-import { ContainerClass } from "./class";
+import { ContainerClass } from "@/class";
 import { poppinsFont } from "@/lib/fonts/font";
 import { BackgroundLoader, RecommendedProduct } from "@/components";
 

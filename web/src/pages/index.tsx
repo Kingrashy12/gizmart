@@ -7,7 +7,7 @@ import {
   HighDiscount,
   // ProductSection,
 } from "@/components";
-import { ContainerClass } from "./class";
+import { ContainerClass } from "@/class";
 import Head from "next/head";
 import { useAppSelector } from "@/hooks/store";
 import { Suspense, useEffect, lazy } from "react";

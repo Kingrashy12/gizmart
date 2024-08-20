@@ -1,7 +1,7 @@
 import { poppinsFont } from "@/lib/fonts/font";
 import Head from "next/head";
 import React, { Suspense, useEffect } from "react";
-import { ContainerClass, RequiredClass } from "../class";
+import { ContainerClass, RequiredClass } from "@/class";
 import { BackgroundLoader, ChatPage } from "@/components";
 import { useRouter } from "next/router";
 import { useAppSelector } from "@/hooks/store";

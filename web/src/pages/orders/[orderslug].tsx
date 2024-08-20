@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { ContainerClass, ProductListPage_Class } from "../class";
+import { ContainerClass, ProductListPage_Class } from "@/class";
 import { poppinsFont } from "@/lib/fonts/font";
 import Head from "next/head";
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";

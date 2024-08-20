@@ -6,7 +6,7 @@ import {
   ContainerClass,
   ProductListPage_Class,
   ProductSlugClass,
-} from "@/pages/class";
+} from "@/class";
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";

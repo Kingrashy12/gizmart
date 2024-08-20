@@ -1,7 +1,7 @@
 import { poppinsFont } from "@/lib/fonts/font";
 import Head from "next/head";
 import React, { Suspense } from "react";
-import { ContainerClass } from "../class";
+import { ContainerClass } from "@/class";
 import { BackgroundLoader, OrdersContainer } from "@/components";
 
 const index = () => {
