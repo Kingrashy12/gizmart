@@ -29,7 +29,7 @@ const Header = ({ user, activeUser, openMenu }: HeaderProps) => {
     openMenu();
   }
   return (
-    <FlexBetween className="bg-white p-3 border-b items-center">
+    <FlexBetween className="bg-white p-3 border-b items-center max-[550px]:fixed max-[550px]:top-0 max-[550px]:z-10">
       <Flex className="items-center gap-3">
         <HiMiniArrowLeft
           size={35}

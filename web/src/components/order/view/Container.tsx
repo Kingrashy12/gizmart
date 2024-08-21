@@ -10,7 +10,7 @@ const Container: React.FC<{ order: OrderType }> = ({ order }) => {
   const router = useRouter();
   return (
     <Wrapper className="flex flex-col px-0 py-0 w-full h-auto">
-      <Flex className="items-center gap-2 p-2 border-b">
+      <Flex className="items-center gap-2 p-2 border-b max-[480px]:py-3 max-[480px]:px-1">
         <TbArrowLeft
           onClick={() => router.back()}
           size={30}
@@ -20,7 +20,7 @@ const Container: React.FC<{ order: OrderType }> = ({ order }) => {
           Order Details
         </HeaderOne>
       </Flex>
-      <Flex className="flex-col gap-4 p-4">
+      <Flex className="flex-col gap-4 p-4 max-[480px]:p-2">
         <Order order={order} />
         <Payment_Info order={order} />
       </Flex>

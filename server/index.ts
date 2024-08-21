@@ -34,7 +34,12 @@ export const io = new Server(httpServer, {
   },
 });
 
-server.use(cors());
+const corsOptions = {
+  origin: ["https://gizmart.vercel.app", "http://localhost:3000"],
+  optionsSuccessStatus: 200,
+};
+
+server.use(cors(corsOptions));
 server.use(express.json({ limit: "80mb" }));
 server.use(cookieParser());
 server.use(compression({ threshold: 1024 }));

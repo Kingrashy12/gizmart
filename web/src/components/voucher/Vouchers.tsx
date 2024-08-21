@@ -39,9 +39,31 @@ const Vouchers = () => {
       <Divider />
       <Flex className="border-b border-b-neutral-300 p-2">
         <TabGroup>
-          <TabList variant="solid" color="yellow">
-            <Tab value="active">ACTIVE</Tab>
-            <Tab value="inactive">INACTIVE</Tab>
+          <TabList
+            variant="solid"
+            color="yellow"
+            style={{ background: "rgb(229,229,229)" }}
+          >
+            <Tab
+              value="active"
+              onClick={() => setTab("active")}
+              style={{
+                background: tab === "active" ? "white" : "",
+                borderStyle: "none",
+              }}
+            >
+              ACTIVE
+            </Tab>
+            <Tab
+              value="inactive"
+              onClick={() => setTab("inactive")}
+              style={{
+                background: tab === "inactive" ? "white" : "",
+                borderStyle: "none",
+              }}
+            >
+              INACTIVE
+            </Tab>
           </TabList>
         </TabGroup>
       </Flex>

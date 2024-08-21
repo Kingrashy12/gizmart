@@ -66,7 +66,7 @@ const ChatBox = ({ chat, userData, activeUser }: ChatBoxProps) => {
 
   return (
     <Flex
-      className="flex-col justify-between h-screen z-auto"
+      className="flex-col justify-between h-screen max-[550px]:h-full z-auto"
       onClick={() => setOpenMenu(false)}
     >
       <Header

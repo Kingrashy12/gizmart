@@ -38,6 +38,7 @@ const OrderTabs = ({ setTab, orders, tab }: OrderTabProps) => {
           variant="line"
           color="yellow"
           className={poppinsFont.className}
+          style={{ borderColor: "rgb(229,229,229)" }}
         >
           <Tab
             value={tab}

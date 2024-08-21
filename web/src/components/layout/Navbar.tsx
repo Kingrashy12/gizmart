@@ -23,6 +23,7 @@ import io from "socket.io-client";
 import { SOCKET_URL } from "@/constants";
 import { useNotificationModal } from "@/context/useNotification";
 import { updateNotification } from "@/redux/notificationSlice";
+import { IconWrap } from "..";
 
 const Navbar = () => {
   const { onOpen } = useMenuModal();
@@ -99,9 +100,9 @@ const Navbar = () => {
     >
       <div className={NavHeader}>
         <div className="flex items-center gap-3">
-          <Icon
-            icon={RiMenuLine}
-            size="md"
+          <IconWrap
+            Icon={RiMenuLine}
+            size={20}
             onClick={onOpen}
             className="text-black cursor-pointer"
           />

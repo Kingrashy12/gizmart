@@ -16,13 +16,13 @@ const Cart = () => {
   return (
     <Dialog open={isOpen} onClose={onClose} className="z-[300]" static>
       <DialogPanel
-        style={{ borderRadius: 0 }}
+        style={{ borderRadius: 0, background: "white" }}
         className={modalclasses.cartdialog}
       >
         <Flex
           className={`flex flex-col w-full gap-5 relative h-full ${poppinsFont.className}`}
         >
-          <div className="flex justify-between border-b border-b-primaryGray items-center p-3 bg-[rgb(255,255,255,0.5)]">
+          <div className="flex bg-white justify-between border-b border-b-primaryGray items-center p-3 bg-[rgb(255,255,255,0.5)]">
             <p className="font-semibold text-lg text-black">
               Cart {`(${cartState.quantity.length})`}
             </p>

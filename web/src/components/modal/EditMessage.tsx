@@ -63,7 +63,14 @@ const EditMessage = () => {
 
   return (
     <Dialog open={isOpen} onClose={closeEdit}>
-      <DialogPanel>
+      <DialogPanel
+        style={{
+          background: "white",
+          borderStyle: "none",
+          borderWidth: 0,
+          borderColor: "white",
+        }}
+      >
         <Flex
           className="bg-white gap-3 items-center"
           onClick={() => setIsEmojiOpen(false)}

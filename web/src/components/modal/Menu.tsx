@@ -21,7 +21,13 @@ const Menu = () => {
     <div>
       <Dialog open={isOpen} onClose={onClose} className="z-[300]" static>
         <DialogPanel
-          style={{ borderRadius: 0 }}
+          style={{
+            borderRadius: 0,
+            background: "white",
+            borderRight: 0,
+            border: 0,
+            borderStyle: "none",
+          }}
           className={modalclasses.menudialog}
         >
           <div className="flex flex-col w-full gap-5 relative h-auto">

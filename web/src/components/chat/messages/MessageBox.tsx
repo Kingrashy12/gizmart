@@ -106,7 +106,7 @@ const MessageBox = ({ chat, isEmojiOpen, setIsEmojiOpen }: MessageBoxProps) => {
 
   return (
     <Flex
-      className="p-3 border-t bg-white gap-3 items-center"
+      className="p-3 border-t bg-white gap-3 items-center max-[550px]:fixed max-[550px]:bottom-0 max-[550px]:z-10"
       onClick={() => setIsEmojiOpen(false)}
     >
       <SelectedImages

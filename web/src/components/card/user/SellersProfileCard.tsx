@@ -29,7 +29,7 @@ const SellersProfileCard = ({ product }: CurrentProps) => {
           <Arrow
             type="normal"
             position="right"
-            size="lg"
+            size={30}
             className="text-black"
           />
         </FlexBetween>
@@ -54,35 +54,10 @@ const SellersProfileCard = ({ product }: CurrentProps) => {
             title="Verified seller"
             titleWidth="100px"
             iconClass="text-primaryColor"
+            useCustom
             className={product.isSellerVerified ? "-translate-x-3" : "hidden"}
           />
         </Flex>
-        {/* <HeightDivider className="h-auto" />
-        <Flex removeFullWidth className="flex-col w-auto">
-          <Paragraph className="text-xl" fontPoppins fontWeight="semi-bold">
-            {formatToK(listing)}
-          </Paragraph>
-          <Paragraph
-            className="text-sm text-neutral-400"
-            fontPoppins
-            fontWeight="medium"
-          >
-            Products
-          </Paragraph>
-        </Flex> */}
-        {/* <HeightDivider className="h-auto" />
-        <Flex removeFullWidth className="flex-col w-auto">
-          <Paragraph className="text-xl" fontPoppins fontWeight="semi-bold">
-            {formatToK(rating)}
-          </Paragraph>
-          <Paragraph
-            className="text-sm text-neutral-400"
-            fontPoppins
-            fontWeight="medium"
-          >
-            Positive ratings
-          </Paragraph>
-        </Flex> */}
       </FlexBetween>
     </Flex>
   );

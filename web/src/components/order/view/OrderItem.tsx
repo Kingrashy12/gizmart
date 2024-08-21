@@ -44,7 +44,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ order, product }) => {
             Ordered on: {formatTime(order.createdAt, "dd-MMMM-yyyy")}
           </Paragraph>
         </Flex>
-        <Flex className="gap-2 items-center">
+        <Flex className="gap-2 items-center max-[550px]:flex-col">
           <StaticImage
             src={product.images[0]?.url}
             alt={product.name}

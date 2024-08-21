@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { Icon, Textarea, TextInput } from "@tremor/react";
 import { useSearchModal } from "@/context/useSearch";
 import { RiCloseLine } from "@remixicon/react";
+import { IconWrap } from "..";
 
 const SearchModal = () => {
   const { onClose } = useSearchModal();
@@ -29,19 +30,20 @@ const SearchModal = () => {
 
   return (
     <div className="flex-col bg-white p-5 z-[600] w-full h-full top-0 bottom-0 right-0 left-0 fixed max-[580px]:flex hidden">
-      <FlexBetween className="gap-4">
+      <FlexBetween className="gap-4 items-center">
         <SearchInput
-          className="w-full"
+          className="w-full _mobile-search bg-white"
           placeholder="Search products"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyUp={(e) => Search(e)}
         />
-        <Icon
-          icon={RiCloseLine}
-          size="md"
-          className="text-white rounded-full bg-black"
+        <IconWrap
+          Icon={RiCloseLine}
+          size={35}
+          className="text-black"
           onClick={onClose}
+          useCustom
         />
       </FlexBetween>
     </div>

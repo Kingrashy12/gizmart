@@ -116,7 +116,13 @@ const Form = () => {
         onClick={submit}
         variant="primary"
         className="h-12 mt-2"
-        disabled={isLoading}
+        disabled={
+          isLoading ||
+          !form.name ||
+          !form.email ||
+          !form.number ||
+          !form.password
+        }
         isloading={isLoading}
       >
         Sign Up

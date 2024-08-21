@@ -25,7 +25,10 @@ const SelectedImages = ({
 }: SelectedImageType) => {
   return (
     <Dialog open={isOpen} onClose={closeSelection}>
-      <DialogPanel className="flex flex-col gap-3 p-0">
+      <DialogPanel
+        className="flex flex-col gap-3 p-0"
+        style={{ background: "white", borderStyle: "none" }}
+      >
         <FlexBetween className="border-b text-black p-3">
           <HeaderOne fontPoppins className="font-medium text-lg">
             Add image

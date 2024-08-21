@@ -1,11 +1,12 @@
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
 import { Icon } from "@tremor/react";
 import React from "react";
+import { IconWrap } from "..";
 
 type ArrowType = "fixed-scroll" | "normal";
 
 type ArrowProps = {
-  size: "sm" | "md" | "lg" | "xl";
+  size: number;
   className?: string;
   style?: React.CSSProperties;
   type: ArrowType;
@@ -26,11 +27,12 @@ const getArrow = (
   switch (type) {
     case "fixed-scroll":
       return (
-        <Icon
+        <IconWrap
           onClick={onClick}
-          icon={position === "left" ? RiArrowLeftSLine : RiArrowRightSLine}
+          Icon={position === "left" ? RiArrowLeftSLine : RiArrowRightSLine}
           size={size}
           style={style}
+          useCustom
           className={`${className} ${
             disabled ? "cursor-not-allowed opacity-85" : "cursor-pointer"
           } text-white rounded-full hover:opacity-85 p-2 bg-black`}
@@ -38,11 +40,12 @@ const getArrow = (
       );
     case "normal":
       return (
-        <Icon
+        <IconWrap
           onClick={onClick}
-          icon={position === "left" ? RiArrowLeftSLine : RiArrowRightSLine}
+          Icon={position === "left" ? RiArrowLeftSLine : RiArrowRightSLine}
           size={size}
           style={style}
+          useCustom
           className={`${className} cursor-pointer text-black`}
         />
       );

@@ -20,7 +20,16 @@ const PopMessage = ({
 }: PopType) => {
   return (
     <Dialog open={isOpen} onClose={onClose} className="z-[300]" static>
-      <DialogPanel style={{ borderRadius: 0 }} className={`${className}`}>
+      <DialogPanel
+        style={{
+          background: "white",
+          borderStyle: "none",
+          borderWidth: 0,
+          borderColor: "white",
+          borderRadius: 0,
+        }}
+        className={`${className}`}
+      >
         {children}
       </DialogPanel>
     </Dialog>

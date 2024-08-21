@@ -77,13 +77,15 @@ const DetailsCard = ({ product }: CurrentProps) => {
           </Link>
         </Paragraph>
         <HeightDivider />
-        <Flex className="items-center" removeFullWidth>
+        <Flex className="items-center gap-2" removeFullWidth>
           <CustomIcon
             icon={RiEyeLine}
             iconClass="text-black"
             iconSize="md"
             hasTitle
             title="Views"
+            useCustom
+            customIconSize={20}
           />
           <Paragraph
             fontRoboto
@@ -95,11 +97,11 @@ const DetailsCard = ({ product }: CurrentProps) => {
         </Flex>
         <HeightDivider />
         <Flex
-          className="items-center cursor-pointer"
+          className="items-center cursor-pointer gap-2"
           removeFullWidth
           onClick={() => setOpenHistory(true)}
         >
-          <Icon icon={RiLineChartLine} size="md" className="text-black" />
+          <RiLineChartLine size={20} className="text-black" />
           <Paragraph fontRoboto fontWeight="medium">
             View price history
           </Paragraph>

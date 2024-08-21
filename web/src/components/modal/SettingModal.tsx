@@ -45,7 +45,15 @@ const SettingModal = () => {
         loaderOpen ? "cursor-not-allowed" : ""
       }`}
     >
-      <DialogPanel className="flex flex-col bg-white p-0 rounded-xl gap-3 pb-3">
+      <DialogPanel
+        className="flex flex-col bg-white p-0 rounded-xl gap-3 pb-3"
+        style={{
+          background: "white",
+          borderStyle: "none",
+          borderWidth: 0,
+          borderColor: "white",
+        }}
+      >
         {getCurrent(current, onClose, setCurrent)}
       </DialogPanel>
     </Dialog>

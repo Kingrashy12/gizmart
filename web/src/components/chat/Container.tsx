@@ -30,7 +30,7 @@ const Container = ({ chats, isLoading, userId, activeUser }: ChatsProps) => {
   }
   return (
     <div
-      className={`${ContainerClass} ${
+      className={`${ContainerClass} max-[550px]:h-[92vh] ${
         chatState.chat._id ? "max-[550px]:hidden" : "max-[550px]:flex"
       }`}
     >

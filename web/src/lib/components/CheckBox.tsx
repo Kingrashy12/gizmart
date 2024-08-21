@@ -1,3 +1,4 @@
+import { IconWrap } from "@/components";
 import {
   RiCheckboxBlankCircleFill,
   RiCheckboxBlankCircleLine,
@@ -13,9 +14,11 @@ interface CheckProps {
 
 const Check = ({ enabled, setEnabled }: CheckProps) => {
   return (
-    <Icon
+    <IconWrap
       onClick={setEnabled}
-      icon={enabled ? RiCheckboxCircleFill : RiCheckboxBlankCircleLine}
+      useCustom
+      size={25}
+      Icon={enabled ? RiCheckboxCircleFill : RiCheckboxBlankCircleLine}
       className="text-primaryColor cursor-pointer"
     />
   );

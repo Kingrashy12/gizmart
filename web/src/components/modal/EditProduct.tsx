@@ -13,7 +13,15 @@ interface EditProps {
 const EditProduct = ({ closeEdit, product, isOpen }: EditProps) => {
   return (
     <Dialog open={isOpen} onClose={closeEdit} className="z-[600]">
-      <DialogPanel className="p-0">
+      <DialogPanel
+        className="p-0"
+        style={{
+          background: "white",
+          borderStyle: "none",
+          borderWidth: 0,
+          borderColor: "white",
+        }}
+      >
         <Flex className="flex-col text-black gap-3">
           <Flex className="items-center justify-between border-b p-3">
             <HeaderOne className="font-semibold" fontJakarta>

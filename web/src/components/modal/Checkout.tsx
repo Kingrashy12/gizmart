@@ -80,7 +80,15 @@ const Checkout = () => {
   }
   return (
     <Dialog open={isOpen} className="z-[500] top-0" onClose={closeCheckOut}>
-      <DialogPanel className="flex flex-col bg-white p-0 text-black">
+      <DialogPanel
+        className="flex flex-col bg-white p-0 text-black"
+        style={{
+          background: "white",
+          borderStyle: "none",
+          borderWidth: 0,
+          borderColor: "white",
+        }}
+      >
         <Flex className="items-center p-3 border-b justify-between">
           <HeaderOne fontPoppins className="text-lg font-semibold">
             Checkout

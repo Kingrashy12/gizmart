@@ -44,12 +44,12 @@ const Messages = ({ chat, setIsEmojiOpen }: MessagesProps) => {
   return (
     <div
       ref={chatContainerRef}
-      className="p-4 bg-white overflow-y-auto h-full flex-col z-[1] gap-3 flex w-full relative"
+      className="p-4 bg-white overflow-y-auto h-full max-[550px]:h-[85vh] max-[550px]:mt-20 flex-col z-[1] gap-3 flex w-full relative"
       onClick={() => setIsEmojiOpen(false)}
     >
       {messages.length < 1 ? (
-        <Flex className="flex-col gap-1 items-center justify-center">
-          <HeaderOne fontPoppins className="font-medium text-lg">
+        <Flex className="flex-col gap-1 items-center justify-center h-full">
+          <HeaderOne fontPoppins className="font-medium text-lg items-center">
             No message yet!
           </HeaderOne>
           <Paragraph fontRoboto className="font-normal text-neutral-400">

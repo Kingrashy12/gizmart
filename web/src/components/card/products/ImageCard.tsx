@@ -39,7 +39,7 @@ const ImageCard = ({ product }: CurrentProps) => {
         <Arrow
           position="left"
           type="fixed-scroll"
-          size="lg"
+          size={50}
           onClick={scrollLeft}
           className={items.length === 1 ? "hidden" : ""}
         />
@@ -53,7 +53,7 @@ const ImageCard = ({ product }: CurrentProps) => {
         <Arrow
           position="right"
           type="fixed-scroll"
-          size="lg"
+          size={50}
           onClick={scrollRight}
           className={items.length === 1 ? "hidden" : ""}
         />

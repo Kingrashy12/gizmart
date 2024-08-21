@@ -10,6 +10,7 @@ type IconType = {
   useCustom?: boolean;
   onMouseEnter?: React.MouseEventHandler;
   onMouseLeave?: React.MouseEventHandler;
+  style?: React.CSSProperties;
 };
 
 const Icon = ({
@@ -21,6 +22,7 @@ const Icon = ({
   useCustom,
   onMouseEnter,
   onMouseLeave,
+  style,
 }: IconType) => {
   return (
     <>
@@ -31,6 +33,7 @@ const Icon = ({
             color={color}
             className={className}
             onClick={onClick}
+            style={style}
           />
         </>
       ) : (

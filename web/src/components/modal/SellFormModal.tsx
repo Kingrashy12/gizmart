@@ -14,7 +14,14 @@ const SellFormModal = () => {
   const router = useRouter();
   return (
     <Dialog open onClose={() => router.back()} className="z-[600]">
-      <DialogPanel>
+      <DialogPanel
+        style={{
+          background: "white",
+          borderStyle: "none",
+          borderWidth: 0,
+          borderColor: "white",
+        }}
+      >
         {auth.userLoaded ? (
           <AccountValidator />
         ) : (

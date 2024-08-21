@@ -82,7 +82,15 @@ const GenerateVoucher = () => {
       open={isOpen}
       className="flex flex-col items-center justify-center inset-0 h-full top-0 z-[500]"
     >
-      <DialogPanel className="flex flex-col bg-white rounded-xl">
+      <DialogPanel
+        className="flex flex-col bg-white rounded-xl"
+        style={{
+          background: "white",
+          borderStyle: "none",
+          borderWidth: 0,
+          borderColor: "white",
+        }}
+      >
         <HeaderOne fontPoppins className="font-medium text-lg text-black">
           Generate voucher
         </HeaderOne>

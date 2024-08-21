@@ -12,10 +12,10 @@ const No_Voucher = () => {
       <div className="v_icon w-[150px] h-[150px] rounded-full p-3 flex items-center justify-center">
         <RiCoupon3Fill size={80} className="text-primaryColor v_icon_rotate" />
       </div>
-      <HeaderTwo fontPoppins className="text-lg font-semibold">
+      <HeaderTwo fontPoppins className="text-lg font-semibold text-center">
         You currently have no available Voucher
       </HeaderTwo>
-      <Paragraph fontPoppins className="text-neutral-400 text-sm">
+      <Paragraph fontPoppins className="text-neutral-400 text-sm text-center">
         All your available Vouchers will be displayed here
       </Paragraph>
       <Link href="/">

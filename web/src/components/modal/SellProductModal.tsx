@@ -70,7 +70,15 @@ const SellProductModal = () => {
       onClose={onClose}
       className="inset-0 top-0 h-full z-[600]"
     >
-      <DialogPanel className="flex flex-col p-0">
+      <DialogPanel
+        className="flex flex-col p-0"
+        style={{
+          background: "white",
+          borderStyle: "none",
+          borderWidth: 0,
+          borderColor: "white",
+        }}
+      >
         <Flex className="h-full flex-col">
           <FlexBetween className="p-3 border-b border-b-neutral-300 items-center drop-shadow">
             <HeaderOne fontPoppins className="text-black font-semibold text-xl">

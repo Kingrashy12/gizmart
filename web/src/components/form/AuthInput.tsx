@@ -30,7 +30,7 @@ const AuthInput = ({
         icon={icon}
         placeholder={placeholder}
         type={type}
-        className="h-12"
+        className="h-12 _text-input"
         value={value}
         onChange={onChange}
         name={name}
@@ -38,6 +38,7 @@ const AuthInput = ({
         errorMessage={errorMessage}
         max={max}
         onKeyUp={onkeyUp}
+        style={{ color: "black" }}
       />
     </div>
   );

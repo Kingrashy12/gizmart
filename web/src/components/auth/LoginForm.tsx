@@ -53,12 +53,20 @@ const LoginForm = () => {
   return (
     <div className="flex flex-col gap-3 max-[480px]:w-full">
       <TabGroup>
-        <TabList variant="solid" color="yellow">
+        <TabList
+          variant="solid"
+          color="yellow"
+          style={{ background: "rgb(229,229,229)" }}
+        >
           <Tab
             icon={RiAtLine}
             disabled={isLoading}
             onClick={() => setType("email")}
             className={isLoading ? "cursor-not-allowed" : ""}
+            style={{
+              background: type === "email" ? "white" : "",
+              borderStyle: "none",
+            }}
           >
             Email
           </Tab>
@@ -67,6 +75,10 @@ const LoginForm = () => {
             disabled={isLoading}
             onClick={() => setType("number")}
             className={isLoading ? "cursor-not-allowed" : ""}
+            style={{
+              background: type === "number" ? "white" : "",
+              borderStyle: "none",
+            }}
           >
             Number
           </Tab>

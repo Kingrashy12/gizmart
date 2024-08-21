@@ -31,13 +31,14 @@ const getTab = (
       <Link
         href={url}
         onClick={onClick}
-        className={`flex gap-0 items-center border-none w-full p-1 cursor-pointer text-black rounded-md ${
+        className={`flex gap-2 items-center border-none w-full p-1 cursor-pointer text-black rounded-md ${
           isactive && "bg-primaryColor text-white"
         }`}
       >
-        <Icon
-          icon={icon}
-          size="md"
+        <IconWrap
+          Icon={icon}
+          size={20}
+          useCustom
           className={isactive ? "text-white" : "text-black"}
         />
         <p className={`${poppinsFont.className} font-medium`}>{label}</p>
@@ -47,13 +48,14 @@ const getTab = (
     return (
       <div
         onClick={onClick}
-        className={`flex gap-0 items-center border-none w-full p-1 cursor-pointer text-black rounded-md ${
+        className={`flex gap-2 items-center border-none w-full p-1 cursor-pointer text-black rounded-md ${
           isactive && "bg-primaryColor text-white"
         }`}
       >
-        <Icon
-          icon={icon}
-          size="md"
+        <IconWrap
+          Icon={icon}
+          size={20}
+          useCustom
           className={isactive ? "text-white" : "text-black"}
         />
         <p className={`${poppinsFont.className} font-medium`}>{label}</p>

@@ -10,7 +10,7 @@ const Inbox: React.FC<{ activeUser: any[] }> = ({ activeUser }) => {
 
   return (
     <div
-      className={`${InboxClass} relative z-0 ${
+      className={`${InboxClass} max-[550px]:h-full relative z-0 ${
         chatState.selectedChat.chat._id
           ? "max-[550px]:flex"
           : "max-[550px]:hidden"

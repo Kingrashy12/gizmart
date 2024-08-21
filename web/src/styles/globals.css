@@ -244,3 +244,19 @@ body {
     padding: 5px 6px;
   }
 }
+
+._mobile-search {
+  background: white;
+  color: black;
+}
+
+._text-input {
+  background-color: white !important;
+  color: black !important;
+  outline: none !important;
+}
+._text-input:focus {
+  border: none;
+  border-style: none;
+  outline-width: 0;
+}

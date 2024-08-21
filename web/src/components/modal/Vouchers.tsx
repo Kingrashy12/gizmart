@@ -18,9 +18,9 @@ const Vouchers = () => {
   const userId = useAppSelector((state) => state.auth.userId);
   const vouchers = voucherState._all;
 
-  // useEffect(() => {
-  //   dispatch(getVouchers(userId));
-  // }, []);
+  useEffect(() => {
+    dispatch(getVouchers(userId));
+  }, []);
 
   useEffect(() => {
     if (isfetching) {
@@ -47,6 +47,7 @@ const Vouchers = () => {
               Vouchers
             </HeaderOne>
             <IoClose
+              onClick={onClose}
               size={30}
               className="p-1 rounded-md hover:bg-neutral-100 cursor-pointer"
             />

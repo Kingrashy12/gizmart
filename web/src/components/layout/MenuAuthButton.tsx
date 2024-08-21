@@ -1,4 +1,5 @@
 import { useMenuModal } from "@/context/useMenu";
+import { Appcolors } from "@/styles/global";
 import { Button } from "@tremor/react";
 import Link from "next/link";
 import React from "react";
@@ -13,7 +14,8 @@ const MenuAuthButton = () => {
           <Button
             onClick={onClose}
             variant="primary"
-            className="bg-primaryColor outline-none w-28 border-none hover:opacity-75 hover:bg-primaryColor"
+            style={{ background: Appcolors.PrimaryColor, color: "white" }}
+            className="bg-primaryColor text-white outline-none w-28 border-none hover:opacity-75 hover:bg-primaryColor"
           >
             Sign Up
           </Button>
@@ -22,6 +24,10 @@ const MenuAuthButton = () => {
           <Button
             onClick={onClose}
             variant="secondary"
+            style={{
+              color: Appcolors.PrimaryColor,
+              borderColor: Appcolors.PrimaryColor,
+            }}
             className="border-primaryColor outline-none w-28 text-primaryColor hover:text-primaryColor"
           >
             Login

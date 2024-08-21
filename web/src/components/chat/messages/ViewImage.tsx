@@ -52,7 +52,7 @@ const ViewImage = ({
           onClick={viewPrev}
           type="fixed-scroll"
           position="left"
-          size="lg"
+          size={50}
           disabled={current}
           className={`${
             images.length === 1 && "hidden"
@@ -70,7 +70,7 @@ const ViewImage = ({
           onClick={viewNext}
           type="fixed-scroll"
           position="right"
-          size="lg"
+          size={50}
           className={`${
             images.length === 1 && "hidden"
           } max-[480px]:absolute max-[480px]:right-4`}
