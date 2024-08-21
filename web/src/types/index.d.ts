@@ -7,6 +7,8 @@ declare type SettingsCurrentType =
   | "add-address"
   | "";
 
+declare type TestCurrentType = "main" | "add-user";
+
 declare type AddressType = {
   state: string;
   city: string;
@@ -45,7 +47,7 @@ declare type UserType = {
   _id: string;
   name: string;
   email: string;
-  profile: object;
+  profile: UserProfileType | any;
   number: string | any;
   isAdmin: boolean;
   isSeller: boolean;

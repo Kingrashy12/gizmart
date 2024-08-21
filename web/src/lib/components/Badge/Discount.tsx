@@ -11,7 +11,7 @@ interface DiscountProps {
 const Discount = ({ value, style, className }: DiscountProps) => {
   return (
     <div
-      className={`absolute bg-[red] w-7 border border-white right-1 top-1 h-7 flex items-center justify-center rounded-full ${className}`}
+      className={`absolute bg-[red] w-7 border border-white right-1 top-1 h-7 flex items-center justify-center rounded-md ${className}`}
     >
       <Paragraph
         fontInter

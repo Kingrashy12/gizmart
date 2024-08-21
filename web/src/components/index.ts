@@ -30,6 +30,7 @@ export { default as Checkout } from "./modal/Checkout";
 export { default as EditMessage } from "./modal/EditMessage";
 export { default as Successful } from "./modal/Successful";
 export { default as NotificationModal } from "./modal/Notification";
+export { default as DemoLogin } from "./modal/DemoLogin";
 
 export const ChatPage = lazy(() => import("./chat/Page"));
 export const RecommendedProduct = lazy(() => import("./products/Recommended"));

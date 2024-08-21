@@ -5,6 +5,7 @@ import ProductModel from "../models/Products";
 import uploadImage from "../middleware/uploadImage";
 import { updatedUser } from "../middleware/update/user";
 import { generateNumber } from "../utils/generateCode";
+import DemoUserModel from "../models/DemoUser"; //Switched to demo user
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -20,7 +21,7 @@ export const getUserById: RequestHandler = async (req, res) => {
   try {
     const { userId } = req.params;
     if (!userId) return res.status(403).json("UserId is required");
-    const user = await UserModel.findById(userId);
+    const user = await DemoUserModel.findById(userId);
     res.status(200).json(user);
   } catch (error: any) {
     console.log(error.message);
@@ -31,12 +32,13 @@ export const getUserById: RequestHandler = async (req, res) => {
 export const UpgradeToSeller = async (req: Request, res: Response) => {
   try {
     const { userId } = req.body;
-    const user = await UserModel.findById(userId);
+    // Switched to demo
+    const user = await DemoUserModel.findById(userId);
     if (!user) return res.status(404).json("User not found");
     if (user.isSeller) {
       return res.status(403).json("You can only perform this action once");
     } else {
-      const updatedUser = await UserModel.findByIdAndUpdate(
+      const updatedUser = await DemoUserModel.findByIdAndUpdate(
         userId,
         { isSeller: true },
         { new: true }
@@ -53,7 +55,7 @@ export const UpgradeToSeller = async (req: Request, res: Response) => {
 export const getSeller: RequestHandler = async (req, res) => {
   try {
     const { slug } = req.params;
-    const user = await UserModel.findOne({ slug }).select(
+    const user = await DemoUserModel.findOne({ slug }).select(
       "-chats -notifications -history -password -vouchers -favourites -orders"
     );
     if (!user) return res.status(404).json("Seller not found");
@@ -107,7 +109,7 @@ export const addAddress: RequestHandler = async (req, res) => {
       current,
       id: generateNumber(10),
     };
-    const updatedUser = await UserModel.findByIdAndUpdate(
+    const updatedUser = await DemoUserModel.findByIdAndUpdate(
       userId,
       { $push: { address: newAddress } },
       { new: true }

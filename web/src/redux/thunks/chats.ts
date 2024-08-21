@@ -10,9 +10,10 @@ export const getChats = createAsyncThunk(
       const chats = await fetchUserChats(userId);
       return chats;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -29,9 +30,10 @@ export const create_Chat = createAsyncThunk(
       const chat = await createChat(senderId, receiverId);
       return chat;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );

@@ -5,6 +5,7 @@ import {
   EditMessageProvider,
   CongratsProvider,
   NotificationModalProvider,
+  UsersModalProvider,
 } from "@/context";
 import { CheckOutProvider } from "@/context/useCheckout";
 import { GenVoucherProvider } from "@/context/useGenVoucher";
@@ -16,6 +17,7 @@ import VoucherModalProvider from "@/context/useVouchers";
 import { loadUser } from "@/redux/authSlice";
 import { store } from "@/redux/sore";
 import { getProducts } from "@/redux/thunks/product";
+import { getDemoAccounts } from "@/redux/thunks/user";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
@@ -23,6 +25,7 @@ import { Provider } from "react-redux";
 
 store.dispatch(loadUser());
 store.dispatch(getProducts());
+store.dispatch(getDemoAccounts());
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -32,24 +35,26 @@ export default function App({ Component, pageProps }: AppProps) {
           <CongratsProvider>
             <CheckOutProvider>
               <SellProductModalProvider>
-                <MenuModalProvider>
-                  <CartModalProvider>
-                    <SearchModalProvider>
-                      <NotificationModalProvider>
-                        <Layout>
-                          <Toaster />
-                          <GenVoucherProvider>
-                            <EditMessageProvider>
-                              <VoucherModalProvider>
-                                <Component {...pageProps} />
-                              </VoucherModalProvider>
-                            </EditMessageProvider>
-                          </GenVoucherProvider>
-                        </Layout>
-                      </NotificationModalProvider>
-                    </SearchModalProvider>
-                  </CartModalProvider>
-                </MenuModalProvider>
+                <UsersModalProvider>
+                  <MenuModalProvider>
+                    <CartModalProvider>
+                      <SearchModalProvider>
+                        <NotificationModalProvider>
+                          <Layout>
+                            <Toaster />
+                            <GenVoucherProvider>
+                              <EditMessageProvider>
+                                <VoucherModalProvider>
+                                  <Component {...pageProps} />
+                                </VoucherModalProvider>
+                              </EditMessageProvider>
+                            </GenVoucherProvider>
+                          </Layout>
+                        </NotificationModalProvider>
+                      </SearchModalProvider>
+                    </CartModalProvider>
+                  </MenuModalProvider>
+                </UsersModalProvider>
               </SellProductModalProvider>
             </CheckOutProvider>
           </CongratsProvider>

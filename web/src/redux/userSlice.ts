@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchSeller } from "./thunks/user";
+import { addDemoUser, fetchSeller, getDemoAccounts } from "./thunks/user";
+import toast from "react-hot-toast";
 
 const initialState: UserStateType = {
   seller: {
@@ -20,10 +21,13 @@ const initialState: UserStateType = {
     products: [],
   },
   users: [],
+  demo_accounts: [],
   fetch_seller_status: "",
   fetch_seller_error: "",
   fetchStatus: "",
   fetchError: "",
+  addStatus: "",
+  addError: "",
 };
 
 const userSlice = createSlice({
@@ -47,6 +51,27 @@ const userSlice = createSlice({
         fetch_seller_status: "failed",
         fetch_seller_error: action.payload,
       };
+    });
+    builder.addCase(addDemoUser.pending, (state) => {
+      return { ...state, addStatus: "pending" };
+    });
+    builder.addCase(addDemoUser.fulfilled, (state, action) => {
+      toast.success(action.payload?.message);
+      const updatedUsers = [action.payload, ...state.demo_accounts];
+      return { ...state, addStatus: "successful", demo_accounts: updatedUsers };
+    });
+    builder.addCase(addDemoUser.rejected, (state, action) => {
+      return { ...state, addError: action.payload, addStatus: "failed" };
+    });
+    builder.addCase(getDemoAccounts.pending, (state) => {
+      toast.loading("Fetching demo accounts...", { id: "demo_fetch" });
+    });
+    builder.addCase(getDemoAccounts.fulfilled, (state, action) => {
+      toast.success(action.payload?.message, { id: "demo_fetch" });
+      return { ...state, demo_accounts: action.payload.accounts };
+    });
+    builder.addCase(getDemoAccounts.rejected, (state, action) => {
+      console.log("Installation failed", action.payload);
     });
   },
 });

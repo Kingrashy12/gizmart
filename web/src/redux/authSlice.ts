@@ -7,6 +7,7 @@ import {
   upgradeToSeller,
   updateProfile,
   addAddress,
+  demoLogin,
 } from "./thunks/auth";
 import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
@@ -282,6 +283,36 @@ const AuthSlice = createSlice({
         addressStatus: "failed",
         addressError: action.payload,
       };
+    });
+    builder.addCase(demoLogin.pending, (state) => {
+      return { ...state, loginStatus: "pending" };
+    });
+    builder.addCase(demoLogin.fulfilled, (state, action) => {
+      toast.success(action.payload?.message);
+      if (typeof window !== undefined) {
+        window.location.href = "/";
+      }
+      const token = action.payload?.token;
+      const user: UserType = jwtDecode(token);
+
+      return {
+        ...state,
+        token: token,
+        name: user.name,
+        email: user.email,
+        userId: user._id,
+        profile: user.profile,
+        number: user.number,
+        isAdmin: user.isAdmin,
+        isSeller: user.isSeller,
+        isNumberVerified: user.isNumberVerified,
+        address: user.address,
+        userLoaded: true,
+        loginStatus: "successful",
+      };
+    });
+    builder.addCase(demoLogin.rejected, (state, action) => {
+      return { ...state, loginError: action.payload, loginStatus: "failed" };
     });
   },
 });

@@ -56,3 +56,19 @@ export async function generate_voucher(data: VoucherGenerationtype) {
 
   return voucher.data;
 }
+
+export async function add_demo_user(form: DemoAccountFormType) {
+  const user = await axios.post(`${API_URL}/demo/account/add/${form.userId}`, {
+    name: form.name,
+    email: form.email,
+    number: form.number,
+    isSeller: form.isSeller,
+    profile: form.profile,
+  });
+  return user.data;
+}
+
+export async function demo_login(email: string) {
+  const token = await axios.post(`${API_URL}/demo/account/login`, { email });
+  return token.data;
+}

@@ -9,6 +9,7 @@ import orderReducer from "./orderSlice";
 import voucherReducer from "./voucherSlice";
 import notificationReducer from "./notificationSlice";
 import savedProductReducer from "./savedProductSlice";
+import testUsersReducer from "./testUsersSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     order: orderReducer,
     product: productReducer,
     saved: savedProductReducer,
+    test_user: testUsersReducer,
     user: userReducer,
     voucher: voucherReducer,
   },

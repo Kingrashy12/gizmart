@@ -85,10 +85,13 @@ type SellerType = {
 declare type UserStateType = {
   seller: SellerType;
   users: UserType[];
+  demo_accounts: UserType[];
   fetch_seller_status: StatusType;
   fetch_seller_error: string | any;
   fetchStatus: StatusType;
   fetchError: string | any;
+  addStatus: StatusType;
+  addError: string | any;
 };
 
 declare type UserDataType = {
@@ -196,4 +199,12 @@ declare type NotificationStateType = {
 
 declare type SavedProductStateType = {
   items: ProductType[];
+};
+
+declare type TestUserStateType = {
+  users: UserType[];
+  fetchStatus: StatusType;
+  fetchError: string | any;
+  addStatus: StatusType;
+  addError: string | any;
 };

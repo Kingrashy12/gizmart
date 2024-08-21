@@ -77,3 +77,8 @@ export async function fetchAllProductSlugs() {
   const products = await response.json();
   return products.map((product: { slug: string }) => product.slug);
 }
+
+export async function fetch_demo_accounts() {
+  const accounts = await axios.get(`${API_URL}/demo/account/all`);
+  return accounts.data;
+}

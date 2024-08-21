@@ -22,6 +22,7 @@ import handleNotificationFetch, {
 import { generateNumber } from "./utils/generateCode";
 import handleUserStatus from "./socket/chats";
 import MessageModel from "./models/Message";
+import DemoAccountRoute from "./routes/Demo_User";
 // import { createClient } from "redis";
 
 dotenv.config();
@@ -63,6 +64,7 @@ server.use("/v1/order", OrderRoute);
 server.use("/v1/voucher", VoucherRoute);
 server.use("/v1/chats", ChatsRoute);
 server.use("/v1/messages", MessageRoute);
+server.use("/v1/demo/account", DemoAccountRoute);
 
 server.get("/v1", (req, res) => {
   res.send("Welcome on board");

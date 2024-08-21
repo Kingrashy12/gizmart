@@ -5,6 +5,7 @@ import {
   update_profile,
   UpgradeToSeller,
 } from "@/helper/patch.action";
+import { demo_login } from "@/helper/post.action";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -129,6 +130,21 @@ export const addAddress = createAsyncThunk(
   async ({ ...form }: AddAddressFormType, { rejectWithValue }) => {
     try {
       const res = await add_address(form);
+      global?.localStorage?.setItem("gizmart_auth_key", res?.token);
+      return res;
+    } catch (error: any) {
+      toast.error(error.response?.data);
+      console.log(error.response?.data);
+      return rejectWithValue(error.response?.data);
+    }
+  }
+);
+
+export const demoLogin = createAsyncThunk(
+  "auth/demo-login",
+  async (email: string | any, { rejectWithValue }) => {
+    try {
+      const res = await demo_login(email);
       global?.localStorage?.setItem("gizmart_auth_key", res?.token);
       return res;
     } catch (error: any) {

@@ -37,9 +37,10 @@ export const createProduct = createAsyncThunk(
       });
       return product.data;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -51,9 +52,10 @@ export const getProducts = createAsyncThunk(
       const products = await axios.get(`${API_URL}/products`);
       return products.data;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -65,9 +67,10 @@ export const getSellerProducts = createAsyncThunk(
       const products = await axios.get(`${API_URL}/products/seller/${userId}`);
       return products.data;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -87,9 +90,10 @@ export const deleteProduct = createAsyncThunk(
       });
       return product.data;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -101,9 +105,10 @@ export const editProduct = createAsyncThunk(
       const product = await edit_product(form);
       return product;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );

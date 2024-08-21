@@ -83,3 +83,12 @@ declare type AddAddressFormType = {
   address: string;
   current: boolean;
 };
+
+declare type DemoAccountFormType = {
+  userId: string;
+  email: string;
+  number: string;
+  isSeller: boolean;
+  profile: string;
+  name: string;
+};

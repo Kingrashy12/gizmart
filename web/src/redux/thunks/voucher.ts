@@ -11,9 +11,10 @@ export const generateVoucher = createAsyncThunk(
       const voucher = await generate_voucher(data);
       return voucher;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -25,9 +26,10 @@ export const ApplyVoucher = createAsyncThunk(
       const discountedPrice = await validate_voucher(data);
       return discountedPrice;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -39,9 +41,10 @@ export const getVouchers = createAsyncThunk(
       const vouchers = await get_vouchers(userId);
       return vouchers;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );

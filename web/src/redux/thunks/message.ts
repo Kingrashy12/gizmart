@@ -11,9 +11,10 @@ export const getMessages = createAsyncThunk(
       const messages = await fetchMessages(chatId);
       return messages;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -25,9 +26,10 @@ export const sendMessage = createAsyncThunk(
       const message = await SendMessage(form);
       return message;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -39,9 +41,10 @@ export const editMessage = createAsyncThunk(
       const message = await edit_message(form);
       return message;
     } catch (error: any) {
-      toast.error(error.response?.data);
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage);
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -53,9 +56,10 @@ export const deleteMessage = createAsyncThunk(
       const message = await delete_message(data);
       return message;
     } catch (error: any) {
-      toast.error(error.response?.data, { id: "deleting_" });
-      console.log(error.response?.data);
-      return rejectWithValue(error.response?.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      toast.error(errorMessage, { id: "deleting_" });
+      console.log(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );

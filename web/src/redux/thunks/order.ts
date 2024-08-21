@@ -20,9 +20,10 @@ export const productCheckout = createAsyncThunk(
       const order = await create_order(body);
       return order;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -34,9 +35,10 @@ export const getOrders = createAsyncThunk(
       const orders = await fetch_orders(userId);
       return orders;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -48,9 +50,10 @@ export const getOrder = createAsyncThunk(
       const order = await fetch_order(slug);
       return order;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -62,9 +65,10 @@ export const getMarchantsOrder = createAsyncThunk(
       const order = await fetch_marchants_order(marchantsId);
       return order;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -76,9 +80,10 @@ export const cancelOrder = createAsyncThunk(
       const order = await cancel_order(orderId);
       return order;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -90,9 +95,10 @@ export const confirmOrder = createAsyncThunk(
       const order = await confirm_order(data);
       return order;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -104,9 +110,10 @@ export const releaseOrder = createAsyncThunk(
       const order = await release_order(orderId);
       return order;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -118,9 +125,10 @@ export const completeOrder = createAsyncThunk(
       const order = await complete_order(orderId);
       return order;
     } catch (error: any) {
-      console.log(error.response.data);
-      toast.error(error.response.data);
-      return rejectWithValue(error.response.data);
+      const errorMessage = error.response?.data || "Internal server error";
+      console.log(errorMessage);
+      toast.error(errorMessage);
+      return rejectWithValue(errorMessage);
     }
   }
 );

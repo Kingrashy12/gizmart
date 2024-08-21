@@ -19,11 +19,14 @@ import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { useSellProductModal } from "@/context/useSell";
 import { GoChecklist } from "react-icons/go";
 import { MdBookmark } from "react-icons/md";
+import { FaUsersGear } from "react-icons/fa6";
+import { useUsersModal } from "@/context/useUsers";
 
 const MenuLinks = () => {
   const path = useRouter();
   const { onClose } = useMenuModal();
   const { onOpen } = useSettingsModal();
+  const { onOpen: openUsersPanel } = useUsersModal();
   const dispatch = useAppDispatch();
   const { isOpen, onOpen: openSell } = useSellProductModal();
   const authState = useAppSelector((state) => state.auth);
@@ -35,6 +38,10 @@ const MenuLinks = () => {
   function opensell() {
     onClose();
     openSell();
+  }
+  function openUsers() {
+    onClose();
+    openUsersPanel();
   }
   return (
     <div className="flex flex-col w-full relative gap-6 h-full">
@@ -91,6 +98,12 @@ const MenuLinks = () => {
         notValue={0}
       />
       <MenuTab
+        label="Users"
+        className={authState.isAdmin ? "flex" : "hidden"}
+        onClick={openUsers}
+        icon={FaUsersGear}
+      />
+      <MenuTab
         url="/saved"
         label="Saved product"
         islink
@@ -115,14 +128,7 @@ const MenuLinks = () => {
         isactive={path.pathname === "/voucher"}
         icon={RiCoupon3Fill}
       />
-      {/* <MenuTab
-        url="/history"
-        label="History"
-        islink
-        onClick={onClose}
-        isactive={path.pathname === "/history"}
-        icon={RiHistoryLine}
-      /> */}
+
       <MenuTab
         onClick={() => dispatch(logUserout())}
         label="Sign out"
