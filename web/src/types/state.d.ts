@@ -14,6 +14,7 @@ declare type AuthState = {
   number: string;
   isAdmin: boolean;
   isSeller: boolean;
+  type: string;
   isVerified: boolean;
   isNumberVerified: boolean;
   address: AddressType[];

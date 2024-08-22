@@ -1,11 +1,10 @@
-import DemoUserModel from "../models/DemoUser";
 import UserModel from "../models/User";
 
 const notifyUser = async (userId: string, notification: any): Promise<void> => {
   try {
     const newNotification = await notification.save();
     if (userId) {
-      await DemoUserModel.findByIdAndUpdate(userId, {
+      await UserModel.findByIdAndUpdate(userId, {
         $push: { notifications: newNotification },
       });
       console.log("Notification sent🎉");
@@ -18,10 +17,3 @@ const notifyUser = async (userId: string, notification: any): Promise<void> => {
 };
 
 export default notifyUser;
-
-// const notifySeller = async(sellerId:string|any) => {
-//     const newNotification = await notification.save()
-//     if (sellerId) {
-//       await UserModel.findByIdAndUpdate(sellerId, {$push:{notifications: newNotification}})
-//     }
-//   }

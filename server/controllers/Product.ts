@@ -6,7 +6,6 @@ import PriceModel from "../models/PriceHistroy";
 import slugify from "../utils/slugify";
 import { pLimit } from "../middleware/pLimit";
 import { update_product } from "../middleware/update/product";
-import DemoUserModel from "../models/DemoUser";
 
 export const createProduct: RequestHandler = async (req, res) => {
   try {
@@ -25,8 +24,8 @@ export const createProduct: RequestHandler = async (req, res) => {
     } = req.body;
     if (images) {
       const limit = pLimit(10);
-      // Switched to demo
-      const user = await DemoUserModel.findById(userId);
+
+      const user = await UserModel.findById(userId);
       if (!user) return res.status(404).json("User not found");
       const imagesToUpload = images.map((image: any) => {
         return limit(async () => {
@@ -125,7 +124,7 @@ export const deleteProduct: RequestHandler = async (req, res) => {
   try {
     const { userId, productId } = req.body;
     const product = await ProductModel.findById(productId);
-    const user = await DemoUserModel.findById(userId);
+    const user = await UserModel.findById(userId);
     if (!user) return res.status(404).json("User not found");
     if (!product) return res.status(404).json("product not found");
     if (product.userId !== userId) {

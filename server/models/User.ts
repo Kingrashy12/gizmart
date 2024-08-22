@@ -20,6 +20,7 @@ const UserSchema = new mongoose.Schema(
     chats: { type: Array, default: [] },
     notifications: { type: Array, default: [] },
     address: { type: Array, default: [] },
+    type: { type: String, required: true },
   },
   { timestamps: true }
 );

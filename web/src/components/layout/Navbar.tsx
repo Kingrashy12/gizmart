@@ -5,7 +5,7 @@ import { GizRowLogo } from "@/assets";
 import Link from "next/link";
 import { Icon } from "@tremor/react";
 import { RiMenuLine, RiNotification4Line } from "@remixicon/react";
-import { Divider, HeightDivider, NotIcon } from "@/lib";
+import { Divider, HeightDivider, NotIcon, Paragraph } from "@/lib";
 import NavLinks from "./NavLinks";
 import { NavBarContainer, NavHeader } from "./class";
 import NavTab from "../tab/NavTab";
@@ -125,11 +125,14 @@ const Navbar = () => {
         />
         <div className="flex gap-6 items-center relative h-full">
           {authState.userLoaded ? null : (
-            <NavTab
-              url="/account/login"
-              label="Login"
-              className="max-[800px]:hidden text-sm hover:underline"
-            />
+            <Link href="/account/login">
+              <Paragraph
+                fontPoppins
+                className={`font-medium hover:text-primaryColor flex items-center text-sm hover:underline`}
+              >
+                Login
+              </Paragraph>
+            </Link>
           )}
           {!authState.userLoaded && (
             <HeightDivider className="max-[800px]:hidden" />

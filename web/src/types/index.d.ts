@@ -50,6 +50,7 @@ declare type UserType = {
   profile: UserProfileType | any;
   number: string | any;
   isAdmin: boolean;
+  type: string;
   isSeller: boolean;
   isVerified: boolean;
   isNumberVerified: boolean;

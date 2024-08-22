@@ -20,6 +20,7 @@ export type UserTokenType = {
   isNumberVerified: boolean;
   _id?: string | any;
   address: AddressType[];
+  type: string;
 };
 
 export interface AuthenticatedRequest extends Request {

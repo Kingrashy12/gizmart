@@ -2,7 +2,7 @@ import { poppinsFont } from "@/lib/fonts/font";
 import Head from "next/head";
 import React from "react";
 import { ContainerClass } from "@/class";
-import { DemoLogin, Login_ } from "@/components";
+import { Login_ } from "@/components";
 
 const Login = () => {
   return (
@@ -10,8 +10,7 @@ const Login = () => {
       <Head>
         <title>Login - Gizmart</title>
       </Head>
-      {/* <Login_ /> */}
-      <DemoLogin />
+      <Login_ />
     </main>
   );
 };

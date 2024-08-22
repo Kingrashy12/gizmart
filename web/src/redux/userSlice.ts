@@ -64,11 +64,10 @@ const userSlice = createSlice({
       return { ...state, addError: action.payload, addStatus: "failed" };
     });
     builder.addCase(getDemoAccounts.pending, (state) => {
-      toast.loading("Fetching demo accounts...", { id: "demo_fetch" });
+      // toast.loading("Fetching demo accounts...", { id: "demo_fetch" });
     });
     builder.addCase(getDemoAccounts.fulfilled, (state, action) => {
-      toast.success(action.payload?.message, { id: "demo_fetch" });
-      return { ...state, demo_accounts: action.payload.accounts };
+      return { ...state, demo_accounts: action.payload };
     });
     builder.addCase(getDemoAccounts.rejected, (state, action) => {
       console.log("Installation failed", action.payload);

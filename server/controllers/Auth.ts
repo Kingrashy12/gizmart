@@ -30,6 +30,7 @@ export const RegisterUser = async (req: Request, res: Response) => {
       number,
       slug: slugify(name),
       profile: uploadRes,
+      type: "live",
     });
     const user = await newUser.save();
     const token = genAuthToken(user);

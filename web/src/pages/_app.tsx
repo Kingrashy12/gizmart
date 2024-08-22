@@ -6,6 +6,7 @@ import {
   CongratsProvider,
   NotificationModalProvider,
   UsersModalProvider,
+  DemoUsersModalProvider,
 } from "@/context";
 import { CheckOutProvider } from "@/context/useCheckout";
 import { GenVoucherProvider } from "@/context/useGenVoucher";
@@ -14,7 +15,7 @@ import { SearchModalProvider } from "@/context/useSearch";
 import { SellProductModalProvider } from "@/context/useSell";
 import { SettingsModalProvider } from "@/context/useSettings";
 import VoucherModalProvider from "@/context/useVouchers";
-import { loadUser } from "@/redux/authSlice";
+import { checkType, loadUser } from "@/redux/authSlice";
 import { store } from "@/redux/sore";
 import { getProducts } from "@/redux/thunks/product";
 import { getDemoAccounts } from "@/redux/thunks/user";
@@ -26,6 +27,7 @@ import { Provider } from "react-redux";
 store.dispatch(loadUser());
 store.dispatch(getProducts());
 store.dispatch(getDemoAccounts());
+store.dispatch(checkType());
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -45,7 +47,9 @@ export default function App({ Component, pageProps }: AppProps) {
                             <GenVoucherProvider>
                               <EditMessageProvider>
                                 <VoucherModalProvider>
-                                  <Component {...pageProps} />
+                                  <DemoUsersModalProvider>
+                                    <Component {...pageProps} />
+                                  </DemoUsersModalProvider>
                                 </VoucherModalProvider>
                               </EditMessageProvider>
                             </GenVoucherProvider>

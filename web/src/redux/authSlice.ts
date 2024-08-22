@@ -20,6 +20,7 @@ const initialState: AuthState = {
   profile: "",
   number: "",
   isAdmin: false,
+  type: "",
   isSeller: false,
   isVerified: false,
   isNumberVerified: false,
@@ -56,6 +57,8 @@ const AuthSlice = createSlice({
           profile: user.profile,
           number: user.number,
           isAdmin: user.isAdmin,
+          type: user.type,
+          address: user.address,
           isSeller: user.isSeller,
           isNumberVerified: user.isNumberVerified,
           userLoaded: true,
@@ -75,11 +78,35 @@ const AuthSlice = createSlice({
         profile: "",
         number: "",
         isAdmin: "",
+        type: "",
         isSeller: "",
         isNumberVerified: "",
         address: [],
         userLoaded: false,
       };
+    },
+    checkType: (state: any) => {
+      if (state.userLoaded && !state.type) {
+        toast.success("You were logged out due to an update that was applied.");
+        global?.localStorage?.removeItem("gizmart_auth_key");
+        global?.localStorage?.removeItem("gizmart_auth_userId");
+
+        return {
+          ...state,
+          token: "",
+          name: "",
+          email: "",
+          userId: "",
+          profile: "",
+          number: "",
+          isAdmin: "",
+          type: "",
+          isSeller: "",
+          isNumberVerified: "",
+          address: [],
+          userLoaded: false,
+        };
+      }
     },
   },
   extraReducers(builder) {
@@ -107,6 +134,7 @@ const AuthSlice = createSlice({
         profile: user.profile,
         number: user.number,
         isAdmin: user.isAdmin,
+        type: user.type,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
         address: user.address,
@@ -144,6 +172,7 @@ const AuthSlice = createSlice({
         profile: user.profile,
         number: user.number,
         isAdmin: user.isAdmin,
+        type: user.type,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
         address: user.address,
@@ -174,6 +203,7 @@ const AuthSlice = createSlice({
         profile: user.profile,
         number: user.number,
         isAdmin: user.isAdmin,
+        type: user.type,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
         address: user.address,
@@ -204,6 +234,7 @@ const AuthSlice = createSlice({
         profile: user.profile,
         number: user.number,
         isAdmin: user.isAdmin,
+        type: user.type,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
         address: user.address,
@@ -271,6 +302,7 @@ const AuthSlice = createSlice({
         profile: user.profile,
         number: user.number,
         isAdmin: user.isAdmin,
+        type: user.type,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
         address: user.address,
@@ -304,6 +336,7 @@ const AuthSlice = createSlice({
         profile: user.profile,
         number: user.number,
         isAdmin: user.isAdmin,
+        type: user.type,
         isSeller: user.isSeller,
         isNumberVerified: user.isNumberVerified,
         address: user.address,
@@ -319,4 +352,4 @@ const AuthSlice = createSlice({
 //
 export default AuthSlice.reducer;
 
-export const { loadUser, logUserout } = AuthSlice.actions;
+export const { loadUser, logUserout, checkType } = AuthSlice.actions;
