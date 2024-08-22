@@ -28,6 +28,7 @@ declare type PasswordInputType = {
   errMessage?: string;
   icon?: any;
   type?: "number" | "password" | "email" | "search" | "text" | "url";
+  disabled?: boolean;
 };
 declare type Notification_Type =
   | "orderReceived"

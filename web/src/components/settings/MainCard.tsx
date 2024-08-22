@@ -6,6 +6,7 @@ import { FaPhoneAlt, FaUserCircle } from "react-icons/fa";
 import { MdAlternateEmail, MdOutlineDelete } from "react-icons/md";
 import { RiLockPasswordLine } from "@remixicon/react";
 import { BsHouseAddFill } from "react-icons/bs";
+import { useAppSelector } from "@/hooks/store";
 
 interface MainProps {
   onClose: () => void;
@@ -13,6 +14,7 @@ interface MainProps {
 }
 
 const MainCard = ({ onClose, exitChange }: MainProps) => {
+  const user = useAppSelector((state) => state.auth);
   return (
     <>
       <FlexBetween className="items-center text-black p-3 border-b-[13px] border-b-softGray">
@@ -46,6 +48,7 @@ const MainCard = ({ onClose, exitChange }: MainProps) => {
       <SolidSettingsCard
         icon={<RiLockPasswordLine size={25} />}
         setting="Change password"
+        className={user.type === "demo" ? "cursor-not-allowed" : ""}
         onClick={() => exitChange("password")}
       />
       <SolidSettingsCard

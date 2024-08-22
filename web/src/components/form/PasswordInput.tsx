@@ -11,6 +11,7 @@ const PasswordInput: React.FC<PasswordInputType> = ({
   name,
   errMessage,
   error,
+  disabled,
 }) => {
   return (
     <Flex className="flex-col gap-2">
@@ -26,6 +27,7 @@ const PasswordInput: React.FC<PasswordInputType> = ({
         name={name}
         error={error}
         errorMessage={errMessage}
+        disabled={disabled}
       />
     </Flex>
   );

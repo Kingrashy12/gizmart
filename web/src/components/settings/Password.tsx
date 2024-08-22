@@ -13,7 +13,8 @@ interface PasswordTypes {
 
 const Password: React.FC<PasswordTypes> = ({ exitChange }) => {
   const [isupdating, setIsUpdating] = useState(false);
-  const userId = useAppSelector((state) => state.auth.userId);
+  const user = useAppSelector((state) => state.auth);
+  const userId = user.userId;
   const [form, setForm] = useState({
     userId,
     password: "",
@@ -64,6 +65,7 @@ const Password: React.FC<PasswordTypes> = ({ exitChange }) => {
           onChange={handleFormChange}
           placeholder="Enter current password"
           name="password"
+          disabled={user.type === "demo"}
         />
         <Divider className="mt-1" />
         <PasswordInput
@@ -72,6 +74,7 @@ const Password: React.FC<PasswordTypes> = ({ exitChange }) => {
           onChange={handleFormChange}
           placeholder="Enter new password"
           name="newPassword"
+          disabled={user.type === "demo"}
         />
         <PasswordInput
           label="Confirm new password"
@@ -81,6 +84,7 @@ const Password: React.FC<PasswordTypes> = ({ exitChange }) => {
           name="confirmNewPassword"
           error={notMatched}
           errMessage="Password does not match"
+          disabled={user.type === "demo"}
         />
         <Divider className="mt-1" />
         <CustomButton

@@ -62,7 +62,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   } catch (error: any) {
     hasFailed = true;
     const fetchedError = `${error.message}`;
-    console.log(error.message);
     return {
       props: { pageName: sellerslug, sellerslug, hasFailed, fetchedError },
     };
