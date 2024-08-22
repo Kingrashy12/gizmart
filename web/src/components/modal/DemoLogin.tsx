@@ -14,7 +14,7 @@ const DemoLogin = () => {
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="z-[500]">
-      <DialogPanel>
+      <DialogPanel className="p-0">
         <Flex className="flex-col w-[500px] max-[550px]:w-[90%] bg-white rounded-lg drop-shadow">
           <FlexBetween className="border-b items-center p-3 rounded-t-lg">
             <HeaderOne fontPoppins className="font-semibold text-lg">
