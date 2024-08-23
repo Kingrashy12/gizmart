@@ -40,7 +40,9 @@ const SellerInfo = ({ pageName, sellerslug }: SellerInfoProps) => {
   }, [isFetching]);
 
   useEffect(() => {
-    dispatch(getChats(userId));
+    if (userId) {
+      dispatch(getChats(userId));
+    }
   }, []);
 
   const router = useRouter();
