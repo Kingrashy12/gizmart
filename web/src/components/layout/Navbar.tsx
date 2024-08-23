@@ -118,7 +118,7 @@ const Navbar = () => {
         </div>
         <SearchInput
           className="w-[50%] max-[700px]:hidden"
-          placeholder="Search products"
+          placeholder="What are you looking for"
           value={query}
           onChange={Search}
           onKeyUp={onKeySearch}

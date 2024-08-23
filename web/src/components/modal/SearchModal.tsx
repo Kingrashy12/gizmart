@@ -33,7 +33,7 @@ const SearchModal = () => {
       <FlexBetween className="gap-4 items-center">
         <SearchInput
           className="w-full _mobile-search bg-white"
-          placeholder="Search products"
+          placeholder="What are you looking for"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyUp={(e) => Search(e)}
