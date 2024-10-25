@@ -36,7 +36,7 @@ export const io = new Server(httpServer, {
 });
 
 const corsOptions = {
-  origin: ["https://gizmart.vercel.app", "http://localhost:3000"],
+  origin: true,
   optionsSuccessStatus: 200,
 };
 
