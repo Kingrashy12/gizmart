@@ -5,6 +5,7 @@ import slugify from "../utils/slugify";
 import genAuthToken from "../utils/genAuthToken";
 import Cloud from "../utils/cloudinary";
 import comparePassword from "../utils/comparePassword";
+import { useRequest } from "../utils/use";
 
 export const RegisterUser = async (req: Request, res: Response) => {
   try {
@@ -42,6 +43,19 @@ export const RegisterUser = async (req: Request, res: Response) => {
   }
 };
 
+export const checkMail = useRequest({
+  action: async (req, res) => {
+    try {
+      const { email } = req.body;
+      const user = await UserModel.findOne({ email });
+      if (user) return res.status(403).json("User already exits");
+      res.status(200).json(true);
+    } catch (error: any) {
+      console.error(error.message);
+      res.status(500).json(error.message);
+    }
+  },
+});
 export const loginWithEmail = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
@@ -52,8 +66,6 @@ export const loginWithEmail = async (req: Request, res: Response) => {
     const token = genAuthToken(user);
     const userToken = token;
     res.cookie("userToken", userToken, { httpOnly: true, secure: true });
-    // const { userToken } = req.cookies;
-    // console.log("User Login Credentials:", userToken);
     return res.status(200).json(token);
   } catch (error: any) {
     console.error(error.message);
